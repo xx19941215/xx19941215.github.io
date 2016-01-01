@@ -1,0 +1,14 @@
+---
+layout:     post
+title:      "Hello 2016"
+subtitle:   "hello 2016"
+date:       2016-01-01 22:00:00
+author:     "Xiao"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Life
+---
+
+>I am back.
+
+Xiao
