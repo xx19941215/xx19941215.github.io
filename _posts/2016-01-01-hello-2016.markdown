@@ -1,4 +1,4 @@
----
+﻿---
 layout:     post
 title:      "Hello 2016"
 subtitle:   "hello 2016"
@@ -11,4 +11,4 @@ tags:
 
 >I am back.
 
-һ���ֺܿ��ȥ��
+一年又很快过去了
