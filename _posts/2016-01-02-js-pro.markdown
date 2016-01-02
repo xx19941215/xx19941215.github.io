@@ -1,0 +1,14 @@
+---
+layout:     post
+title:      "Javascript高级程序设计笔记"
+subtitle:   "好记性不如烂笔头"
+date:       2016-01-02 20:19:00
+author:     "Xiao"
+header-img: "img/post-bj-jspro.jpg"
+tags:
+    - Javascript
+---
+
+>好记性不如烂笔头.
+
+
