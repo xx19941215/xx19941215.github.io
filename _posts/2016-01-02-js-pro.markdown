@@ -33,6 +33,7 @@ var sum=function(num1,xum2){
 ```
 
 - 使用Function构造函数
+
 ```javascript
 var sum=Function("num1","num2","return num1+num2");//不推荐
 ```
