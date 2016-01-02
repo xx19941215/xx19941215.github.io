@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Javascript高级程序设计笔记"
+title:      "5.5 Function类型"
 subtitle:   "好记性不如烂笔头"
 date:       2016-01-02 20:19:00
 author:     "Xiao"
@@ -11,4 +11,76 @@ tags:
 
 >好记性不如烂笔头.
 
+>好记性不如烂笔头
+
+函数实际上是对象，每个函数都是Function类型的实例。与其他引用类型都一样具有属性和方法。由于函数是对象，所以每一个函数名都是指向函数对象的指针，不会与某个函数对象绑定。
+
+##1.函数的定义方法
+
+- 使用函数声明语法:
+```
+function sum(num1,num2){
+   return num1+num2; 
+}```
+- 使用函数表达式
+```
+var sum=function(num1,xum2){ 
+  return num1+num2; 
+  };//结尾要有分号，就像声明其他变量一样```
+- 使用Function构造函数
+```
+var sum=Function("num1","num2","return num1+num2");//不推荐
+```
+
+由于函数名是指针，所以和其他包含对象指针的变量没有什么区别。也就是说一个函数可以有多个名字，例如：
+```
+function sum(num1,num2){
+	return num1+num2;
+}
+alert(sum(10,10));//20
+
+var xiaoxiao=sum;
+alert(xiaoxiao(10,10));//20
+
+sum=null;
+alert(xiaoxiao(10,10));//20
+```
+##2.ECMAscript没有重载
+##3.函数声明和函数表达式的区别
+```
+alert(sum(10,10));//20
+function sum(num1,num2){
+	return num1+num2;
+}
+```
+以上的代码可以正常运行，但下面的会产生错误
+```
+alert(sum(10,10));
+var sum=function(num1,num2){
+	return num1+num2;
+}
+```
+原因是在代码开始执行的时候，js解析器通过一个叫做“函数声明提升”的过程将函数声明添加到了执行环境中。
+
+除此之外，他们没有什么区别。甚至可以一起用，例如：
+```
+var sum=function sum(){}
+```
+但遗憾的是，在safari中会产生错误。
+
+##4.作为值存在的函数
+
+因为ECMAscript中的函数名本身就是变量，所以函数也可以作为值来使用。函数可以作为参数来传递给另外一个函数，也可以作为值返回。看下面的例子：
+```
+function callSomeFunction(someFunction,someArguement){
+	return someFunction(someArgue);
+}
+
+function add10(num){
+	return num+10;
+}
+
+var result1=callSomeFunction(add10,10);
+alert(result1);//20
+```
 
