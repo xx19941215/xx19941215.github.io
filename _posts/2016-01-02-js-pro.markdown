@@ -24,12 +24,14 @@ function sum(num1,num2){
 }
 ```
 - 使用函数表达式
+
 ```javascript
 var sum=function(num1,xum2){ 
   return num1+num2; 
   };//结尾要有分号，就像声明其他变量一样
   
 ```
+
 - 使用Function构造函数
 ```javascript
 var sum=Function("num1","num2","return num1+num2");//不推荐
@@ -58,6 +60,7 @@ function sum(num1,num2){
 	return num1+num2;
 }
 ```
+
 以上的代码可以正常运行，但下面的会产生错误
 
 ```javascript
@@ -66,6 +69,7 @@ var sum=function(num1,num2){
 	return num1+num2;
 }
 ```
+
 原因是在代码开始执行的时候，js解析器通过一个叫做“函数声明提升”的过程将函数声明添加到了执行环境中。
 
 除此之外，他们没有什么区别。甚至可以一起用，例如：
@@ -73,6 +77,7 @@ var sum=function(num1,num2){
 ```javascript
 var sum=function sum(){}
 ```
+
 但遗憾的是，在safari中会产生错误。
 
 ###4.作为值存在的函数
