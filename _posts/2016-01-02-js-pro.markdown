@@ -52,6 +52,7 @@ alert(xiaoxiao(10,10));//20
 sum=null;
 alert(xiaoxiao(10,10));//20
 ```
+
 ### 2.ECMAscript没有重载
 
 ### 3.函数声明和函数表达式的区别
