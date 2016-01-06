@@ -1,4 +1,4 @@
-﻿---
+---
 layout:     post
 title:      "本分做人 踏实做事"
 subtitle:   "软件工程结课所想记录的一些事"
