@@ -100,3 +100,68 @@ var result1=callSomeFunction(add10,10);
 alert(result1);//20
 ```
 
+### 5.函数内部属性
+
+在函数内有两个特殊对象：arguments和this。
+
+arguments是一个类数组对象，包含着传入函数的所有参数。这个对象还有一个callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。看下面这个经典的递归函数
+
+```javascript
+function factorial(num){
+	if(num<1){
+		return 1;
+	}else{
+		return num*factorial(num-1)
+	}
+}
+```
+
+但是这个函数的执行和函数名耦合在了一起。可以使用下面的方法解决
+
+```javascript
+function factorial(num){
+	if(num<1){
+		return 1;
+	}else{
+		return num*arguements.callee(num-1)
+	}
+}
+```
+
+现在即使这样使用这个递归函数，都没有问题
+
+```javascript
+var xiaoxiao=factorial;
+factorial=function(){
+	return 0;
+};
+
+alert(xiaoxiao(5));//120
+alert(factorial(5));//0
+```
+
+this 是指函数运行的环境对象，在网页的全局作用域中调用时，this指的是window
+
+ECMAscript5也规范了另一个函数对象的属性：caller。除了Opera早期版本不支持，其他都支持。
+这个属性保存着当前函数的引用，如果实在全局作用域调用当前函数，它的值为null。因为当前window没有引用对象
+
+例如：
+
+```javascript
+function outer() {
+	inner();
+}
+
+function inner(){
+	alert(inner.caller);
+	//这里可以使用alert(arguments.callee.caller);实现更加松散的耦合
+}
+
+outer();
+
+```
+IE Firefox Chrome和Safari的所有版本和Opera9.6都支持caller属性
+
+
+当在严格模式下访问时，访问arguments.caller会导致错误。ECMAscript5还定义了arguments.caller属性，但是在严格模式下访问他也会导致错误，在非严格模式下访问这个属性始终是undefined。严格模式还有一个限制，不能为函数的caller属性赋值，否则会导致错误。
+
