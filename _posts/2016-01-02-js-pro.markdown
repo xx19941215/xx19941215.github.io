@@ -6,7 +6,7 @@ date:       2016-01-02 20:19:00
 author:     "Xiao"
 header-img: "img/post-bj-jspro.jpg"
 tags:
-    - Javascript
+    - Javascript高级程序设计读书笔记
 ---
 
 >好记性不如烂笔头.
@@ -164,4 +164,74 @@ IE Firefox Chrome和Safari的所有版本和Opera9.6都支持caller属性
 
 
 当在严格模式下访问时，访问arguments.caller会导致错误。ECMAscript5还定义了arguments.caller属性，但是在严格模式下访问他也会导致错误，在非严格模式下访问这个属性始终是undefined。严格模式还有一个限制，不能为函数的caller属性赋值，否则会导致错误。
+
+### 6.函数的属性和方法
+
+因为函数是对象，所以函数也有属性 和方法。每个函数都包含两个属性：`length`和`prototype`。
+length表示函数希望接受命名参数的个数。
+
+例如
+
+```javascript
+function sayName(name){
+	alert(name);
+}
+
+function sayHi(){
+	alert("Hi");
+}
+
+alert(sayName.length);//1
+alert(sayHi.length);//0
+
+```
+
+- prototype属性
+
+对于ECMAscript的引用类型，prototype是保存他们所有实例方法的真正所在。换句话说，诸如toString()和valueOf()方法实际上都是保存在prototyp名下的。只不过是通过各自对象的实例访问罢了。在创建自定义类型和实现继承的时候，prototype属性的作用是及其重要的。在ECMAscript5中，prototype属性是不可以枚举的，因此无法使用for in无法发现。
+
+每个函数都包含两个非继承而来的方法：apple() call()。这两个方法的作用都是在特点的作用域中调用函数，实际上等于设置函数体内this对象的值。
+
+例如：
+
+```javascript
+function sum(num1,num2){
+	return num1+num2;
+}
+
+function callSum1(num1,num2){
+	return sum.apply(this,arguments);//传入argument对象
+}
+function callSum2(num1,num2){
+	return sum.apply(this,[num1.num2]);
+}
+
+alert(callSum1(10,10));//20
+alert(callSum2(10,10));//20
+
+```
+
+call与之不同之处是必须一个一个传入参数的值
+
+```javascript
+sum.call(this,num1,num2);
+```
+
+call和apply的作用是可以扩充函数的作用域，对象和方法不需要有任何的耦合关系了。
+
+除此之外。ECMAscript还有另外一个bind方法。这个方法汇创建一个函数的实例，其this的值会被绑定到传给bind()函数的值。
+
+```javascript
+window.color="red";
+var o={color:"blue"};
+function sayColor(){
+	alert(this.color);
+}
+
+var objectSayColor=sayColor.bind(o);
+objectSayColor();//blue
+
+```
+
+支持：IE9+,Firefox 4+,Safari5.1+,Opera12+和chrome
 
