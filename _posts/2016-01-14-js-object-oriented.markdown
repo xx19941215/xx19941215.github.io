@@ -18,14 +18,14 @@ tags:
 
 ### 1.属性类型
 
-1. 数据属性
+#### 1. 数据属性
 
 数据属性包含一个数据值的位置，在这个位置可以读取和写入值。数据属性有4个描述其行为的特性。
 
-	- [[Configurable]]：能否通过delete删除属性从而重新定义属性，能否修改属性的特性。或者能否把属性修改为访问器属性。默认为true。
-	- [[Enumerable]]：表示能否通过for-in循环返回属性。
-	- [[Writeable]]:表示能否修改属性的值。默认为true
-	- [[Value]]:包含这个属性的数据值。默认为undefined
+- [[Configurable]]：能否通过delete删除属性从而重新定义属性，能否修改属性的特性。或者能否把属性修改为访问器属性。默认为true。
+- [[Enumerable]]：表示能否通过for-in循环返回属性。
+- [[Writeable]]:表示能否修改属性的值。默认为true
+- [[Value]]:包含这个属性的数据值。默认为undefined
 例如：
 
 ```javascript
@@ -56,12 +56,12 @@ Object.defineProperty(person,"name",{
 
 可以多次调用defineProperty，但是设置为false后就有限制了。
 
-2. 访问器属性
+#### 2. 访问器属性
 
-	- [[Configurable]]:表示能否通过delete删除属性从而重新定义属性。默认为true
-	- [[Enumerable]]:表示能否通过for-in循环返回属性。对于直接在对象上定义的属性，这个特性为true。
-	- [[Get]]:在读取属性的时候调用的函数。默认值为:underfined
-	- [[Set]]:在写入属性的时候调用的函数。默认为underfined
+- [[Configurable]]:表示能否通过delete删除属性从而重新定义属性。默认为true
+- [[Enumerable]]:表示能否通过for-in循环返回属性。对于直接在对象上定义的属性，这个特性为true。
+- [[Get]]:在读取属性的时候调用的函数。默认值为:underfined
+- [[Set]]:在写入属性的时候调用的函数。默认为underfined
 访问器属性不可以直接定义，必须使用Object.defineProperty()来定义。请看下面的例子。
 
 ```javascript
