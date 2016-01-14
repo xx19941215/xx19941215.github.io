@@ -120,7 +120,7 @@ Object.defineProperties(book,{
 
 ### 3.读取访问器属性
 
-使用ECMAscript5的Object.getOwnPropertyDescriptor()方法，可以取得属性的描述符。这个方法接受两个参数：属性所在的对象和要读取其描述符的属性的名称。返回值是一个对象，如果是访问器属性，这个对象有configurable、enumerable、get和set；如果是数据属性这个对象的属性有configurable、enumrable、writeable和value。
+使用ECMAscript 5的Object.getOwnPropertyDescriptor()方法，可以取得属性的描述符。这个方法接受两个参数：属性所在的对象和要读取其描述符的属性的名称。返回值是一个对象，如果是访问器属性，这个对象有`configurable`、`enumerable`、`get`和`set`；如果是数据属性这个对象的属性有`configurable`、`enumrable`、`writeable`和`value`。
 例如：
 
 ```javascript
