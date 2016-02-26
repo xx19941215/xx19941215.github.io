@@ -1,0 +1,162 @@
+h1 {
+    color: blue;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+p {
+    font-size: 12px;
+    color: yellow;
+    background-color: black;
+}
+
+img {
+    border: 2px solid red;
+}
+
+.div1 {
+    width: 960px;
+    margin: 0 auto;
+    background-color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.div2 {
+    text-align: center;
+}
+
+.div3 {
+    width: 960px;
+    background-color: red;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+* {
+    color: white;
+}
+
+.DIV {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.DIV-A {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: red;
+}
+
+.DIV-B {
+    height: 50px;
+    margin-left: 50px;
+    background-color: blue;
+}
+
+.DIV-C {
+    height: 50px;
+    width: 100%;
+    background-color: yellow;
+    color: black;
+}
+
+
+/*第二种两列布局*/
+
+.left {
+    float: left;
+    height: 50px;
+    width: 50px;
+    background-color: red;
+}
+
+.right {
+    float: right;
+    height: 50px;
+    width: 100%;
+    margin-left: 50px;
+    background-color: blue;
+}
+
+.bottom {
+    height: 50px;
+    width: 100%;
+    background-color: yellow;
+    color: black;
+}
+
+.column {
+	float:left;
+}
+.zhong {
+	width: 100%;
+	background-color: purple;
+	height: 200px;
+}
+.zuo {
+	height: 200px;
+	width: 200px;
+	background-color: black;
+	margin-left: -100%;
+	position: relative;
+	left: -200px;
+}
+.you {
+	height: 200px;
+	width: 200px;
+	background-color: orange;
+	margin-left: -200px;
+	position: relative;
+	left: 200px;
+}
+.container {
+	margin-top: 100px;
+	padding-right: 200px;
+	padding-left: 200px;
+}
+body {
+	min-width: 600px;
+}
+
+.column_b {
+	float:left;
+}
+.zhong_b {
+	width: 100%;
+	background-color: purple;
+	height: 200px;
+}
+.zuo_b {
+	height: 200px;
+	width: 200px;
+	background-color: black;
+	margin-left: -100%;
+}
+.you_b {
+	height: 200px;
+	width: 200px;
+	background-color: orange;
+	margin-left: -200px;
+}
+.container_b {
+	margin-top: 400px;
+}
+.inner{
+	margin:0 200px 0 200px;
+}
+#floatbox {
+	width: 50px;
+	height: 50px;
+	background-color: blue;
+	margin:10px;
+	float: left;
+}
+.div8 {
+	background-color: red;
+	margin-top: 800px;
+	overflow: hidden;
+}
