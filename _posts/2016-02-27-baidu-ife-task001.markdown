@@ -37,3 +37,42 @@ tags:
 >实现一个浮动布局，红色容器中每一行的蓝色容器数量随着浏览器宽度的变化而变化 
 
 这一题我直接是将每一个盒子浮动起来了，不知道对不对。
+
+接下来我用将近5天的时间完成了TASK001的综合练习，这是我第一次自己写静态页面，自己也亲自踩了许多坑。
+
+>内联和inline-block元素会产生4px的默认line-height（例如img）会产生空白间距
+
+我用的方法是设置父元素的字体大小为0，然后在需要设置字体大小的地方重新设置即可。更多详细的解决方法：[解决inline-block元素的空白间距](http://www.w3cplus.com/css/fighting-the-space-between-inline-block-elements)
+
+<script async src="http://jsfiddle.net/tpaqbux0/embed/"></script>
+
+>当元素块在父盒子内，这个元素设置左浮动的时候然后通过父盒子的padding可以来定位这个元素。但是紧邻他的元素内假如有文本的时候，这时文本会环绕左边的这个浮动的元素。
+
+解决方法是在围绕的元素上加上
+
+```css
+  .fixWrapper {
+          overflow: hidden;
+          zoom: 1;
+      }
+```
+>关于first-child伪类
+
+在使用使用:first-child伪类时一定要保证前面没有兄弟节点；要是有的话可以使用一个div包住这个元素然后在css这样写：
+
+```css
+div thisElement:first {
+	some....
+}
+```
+或者使用 CSS3 :first-of-type
+
+例如：
+
+```css
+p:first-of-type {
+	background: #ff0000;
+}
+```
+
+在线预览在demo在[这里](http://xiaoxiao.work/file/baidu-ife/task001/index.html)
