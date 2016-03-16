@@ -1,0 +1,38 @@
+*{margin: 0;padding: 0;font-family: 'Microsoft YaHei';list-style: none;}
+/*table*/
+.tb{border: 0;}
+tr{text-align: left;}
+.tb tr:nth-child(1){background-color: #000;color: #fff;}
+.tb tr:nth-child(2n+3){background-color: #ccc;}
+.tb tr:nth-child(2){color: red;}
+.tb tr:nth-child(3){color: red;}
+.tb tr:nth-child(4){color: red;}
+/*input*/
+.linearwidth{margin-top: 40px;}
+.linear{width: 100px;transition: width 1s linear;-webkit-transition: width 1s linear;-moz-transition: width 1s linear;-o-transition: width 1s linear;}
+.linear:focus{width: 200px;}
+.linear:blur{width: 100px;}
+/*banner轮播*/
+.ban{width: 400px;height: 200px;margin-top: 40px;overflow: hidden;position: relative;}
+.ban ul.slide{width: 1200px;margin-left: 0;animation:slide1 1s ease-out infinite;}
+.ban ul li{width: 400px;height: 200px;float: left;text-align: center;line-height: 200px;font-size: 20px;color: #fff;}
+.ban ul li:nth-child(1){background-color: green;}
+.ban ul li:nth-child(2){background-color: blue;}
+.ban ul li:nth-child(3){background-color: #ccc;}
+.check{width: 100px;height: 30px;opacity: 0.5;filter: alpha(opacity=50);position: absolute;right: 0;bottom: 0;}
+.check label{width: 30px;height: 30px;margin-left: 3px;float: left;color: #000;text-align: center;line-height: 30px;background-color: #fff;cursor: pointer;}
+#ban1,#ban2,#ban3{display: none;}
+@keyframes slide1{0%,100%{margin-left:0px;}}
+@keyframes slide2{0%,100%{margin-left:-400px;}}
+@keyframes slide3{0%,100%{margin-left:-800px;}}
+#ban1:checked ~ .slide {
+  animation-name:slide1;
+}
+
+#ban2:checked ~ .slide {
+  animation-name:slide2;
+}
+
+#ban3:checked ~ .slide {
+  animation-name:slide3;
+}

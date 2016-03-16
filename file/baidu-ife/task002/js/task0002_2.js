@@ -5,10 +5,6 @@ function countTime() {
     var str = $("input").value;
     str = trim(str);
     var timeArr = str.split("-");
-
-
-
-
     if (timeArr.length != 3) {
         $(".error").innerHTML = "请正确输入";
         return false;
