@@ -142,7 +142,7 @@ flex三栏的顺序为`左中右`，并包裹在`wrap`容器内。wrap设置`dis
 }
 ```
 
-[方案A](http://xiaoxiao.wprk/file/baidu-ife-2016-spring/one/3.html) [方案B](http://xiaoxiao.wprk/file/baidu-ife-2016-spring/one/3_2.html) [方案C](http://xiaoxiao.wprk/file/baidu-ife-2016-spring/one/3_3.html) [方案A](http://xiaoxiao.wprk/file/baidu-ife-2016-spring/one/3_4.html)
+[方案A](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/3.html) [方案B](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/3_2.html) [方案C](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/3_3.html) [方案D](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/3_4.html)
 
 ###### 关于Flex布局
 
