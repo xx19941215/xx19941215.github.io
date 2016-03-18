@@ -81,7 +81,6 @@ BFC（Block Formatting Context）直译为`块级格式化范围`。
 只要把父元素设为BFC就可以清理子元素的浮动了，最常见的用法就是在父元素上设置`overflow: hidden`样式，对于IE6加上`zoom:1`就可以了(IE Haslayout)。清除浮动常用方法之一
 `c`、解决上下相邻两个元素重叠
 两个元素垂直排列，上门的元素设置`margin-bottom`，下面的设置`margin-top`。这两个值会产生一定的重叠。这是将这两个元素包裹在两个BFC区域中就可以避免。
-[demo点此](https://jsfiddle.net/xx19941215/588fL4zs/)
 
 ##### 方案B：圣杯布局
 
@@ -182,3 +181,36 @@ flex三栏的顺序为`左中右`，并包裹在`wrap`容器内。wrap设置`dis
 ![](http://www.runoob.com/wp-content/uploads/2015/07/55b19171b8b6b9487d717bf2ecbba6de.png)
 
 来自：http://www.runoob.com/w3cnote/flex-grammar.html
+
+> 任务四：定位问题
+
+这道题考察了position定位问题。在这里在复习一下非static的的块究竟是相对于谁进行定位。
+
+- staic:不进行定位，元素处于原始文档流之中。
+- relative:元素框偏离某一个距离。相对于原来的位置。
+- absolute：参照点是离自己最近的那个"positioned"(除position为static的盒子以外所有的盒子)而言，并不一定都是相对于body。
+- fixed: 相对于body定位。
+
+[解答](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/4.html)
+
+> 任务五：HTML+CSS综合实践2
+
+主要实现页面左侧宽度自适应。我是使用了BFC块和浮动元素不重叠的方法。大体HTML和CSS结构如下：
+
+```HTML
+<div>
+	<aside></aside>
+	<main></main>
+</div>
+```
+
+```CSS
+main {
+	overflow:hidden;
+}
+aside {
+	float:right;
+}
+```
+
+[解答](http://xiaoxiao.work/file/baidu-ife-2016-spring/one/5.html)
