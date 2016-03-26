@@ -246,6 +246,29 @@ aside {
 - li平铺可以不用float实现，对li使用inline-block
 - 新的选择器：.nav ul li:not(:last-child) 选择除最后一个li的所有li
 - inpu type类型不同的两个input元素无法垂直对齐。最后我是在form上设置了display:flex才对齐的。
+- 样式的优先级顺序。`层叠样式表`的`层叠`就是指的样式的覆盖。样式优先级规则如下面代码。
+	- 由于继承而发生样式冲突时，最近祖先获胜。例如下面的例子，`strong`标签里面的内容会显示来自`p`标签定义的颜色。
+	- 继承的样式和直接指定的样式冲突时，直接指定的样式获胜。
+	- 直接指定的样式发生冲突时，样式权值高者获胜。内联样式的权值>>ID选择器>>类选择器>>标签选择器，除此以外，后代选择器的权值为每项权值之和，比如”#nav .current a”的权值为100 + 10 + 1 = 111。
+	- 样式权值相同时，后者获胜。
+	- !important的样式属性不被覆盖。(不能滥用)
+	
+```HTML 
+<html>
+<head>
+<title>rule1</title>
+<style>
+body{color:black;}
+p{color:blue;}
+</style>
+</head>
+<body>
+<p> <strong>xiao xiao</strong></p>
+</body>
+</html>
+```
+
+
 
 > 任务十：Flexbox 布局练习
 

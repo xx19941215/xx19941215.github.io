@@ -321,6 +321,16 @@ li {
     -webkit-flex: 2 0 850px;
     -ms-flex: 2 0 850px;
     flex: 2 0 850px;
+    text-align: center;
+    color: white;
+   
+}
+
+.detail-one .detail-img #title {
+    color: white;
+    margin-bottom: 0;
+    margin-top: 130px;
+    font-size: 49.47px;
 }
 
 .detail-one .detail-des {
@@ -328,8 +338,20 @@ li {
     -ms-flex: 1 1 430px;
     flex: 1 1 430px;
     padding: 165px 70px 0;
+    position: relative;
 }
 
+.detail-one .detail-des::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-right: 26px solid white;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left:none;
+    left: -26px;
+    top: 50%;
+}   
 .detail h2 {
     text-align: center;
     color: #000;
@@ -403,6 +425,7 @@ li {
     flex: 1 0 430px;
     background: #fff url("../img/7/model2.png") no-repeat;
     background-size: cover;
+    position: relative;
 }
 
 .detail-two .detail-des:first-child {
@@ -468,6 +491,16 @@ li {
     background: #000;
 }
 
+.detail-two .detail-img::after {
+    content: "";
+    display: block;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 26px solid white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
 .volunteering {
     height: 750px;
     padding-top: 118px;
@@ -507,15 +540,16 @@ li {
 }
 
 .agreement {
-    /*-webkit-flex: 1 0 365px;
-    -ms-flex: 1 0 365px;*/
-    /*flex-grow: 1;*/
-    flex-basis: 365px;
-    /*padding-right: 75px;*/
+    -webkit-flex: 1 1 365px;
+    -ms-flex: 1 1 365px;
+    flex: 1 1 365px;
+    padding-right: 75px;
 }
+
 .agreement li:not(:first-child) {
-	margin-top: 55px;
+    margin-top: 55px;
 }
+
 .agreement h3 {
     font: 14px 黑体;
     margin-bottom: 20px;
@@ -526,20 +560,23 @@ li {
     margin-bottom: 20px;
     font: 12px/1.75 宋体;
     color: #231815;
-    word-break:break-all;
+    word-break: break-all;
 }
+
 .agreement li a {
-	background: #fff url("../img/7/arrow.png") no-repeat 0 50%;
-	padding-left: 18px;
-	float: right;
-	font-size: 10px;
-	margin-top: -20px;
+    background: #fff url("../img/7/arrow.png") no-repeat 0 50%;
+    padding-left: 18px;
+    float: right;
+    font-size: 10px;
+    margin-top: -20px;
 }
+
 .volunteering .inner-container .information {
-/*    -webkit-flex: 2 0 auto;
-    -ms-flex: 2 0 auto;*/
-    /*flex-grow: 2;*/
-    flex-basis: 640px;
+    -webkit-flex: 2 1 640px;
+    -ms-flex: 2 1 640px;
+    flex: 2 1 640px;
+    min-width: 640px;
+
 }
 
 .information input[type="text"] {
@@ -555,81 +592,92 @@ li {
     margin-bottom: 14px;
     margin-right: 20px;
 }
+
 .information input[type="text"]:nth-child(2n) {
-	margin-right: 0;
+    margin-right: 0;
 }
-.information textarea{
-	width: 100%;
-	height: 120px;
-	background-color: #EDECEE;
+
+.information textarea {
+    width: 100%;
+    height: 120px;
+    background-color: #EDECEE;
     font: 12px 宋体;
     border: none;
     outline: none;
     padding: 10px 16px;
     margin-bottom: 14px;
 }
+
 .information input[type="submit"] {
-	width: 100%;
-	height: 40px;
-	background-color: #EDECEE;
+    width: 100%;
+    height: 40px;
+    background-color: #EDECEE;
     font: 14px 黑体;
     border: none;
     outline: none;
 }
+
 .contact {
-	height: 361px;
-	background-color: #353941;
-	text-align: center;
-	padding-top: 91px;
-	color: white;
+    height: 361px;
+    background-color: #353941;
+    text-align: center;
+    padding-top: 91px;
+    color: white;
 }
+
 .contact h2 {
-	font: 21px 黑体;
-	margin-bottom: 10px;
-
+    font: 21px 黑体;
+    margin-bottom: 10px;
 }
+
 .contact p {
-	font: 12px/18px 宋体;
-
+    font: 12px/18px 宋体;
 }
+
 .contact form {
-	width: 510px;
+    width: 510px;
     height: 41px;
     margin-top: 30px;
     display: flex;
     margin: 30px auto 0;
 }
+
 .contact form input[type="email"] {
-	width: 430px;
-	height: 41px;
-	outline: none;
-	border:none;
-	background-color: #fff;
-	padding-left: 1em;
+    width: 430px;
+    height: 41px;
+    outline: none;
+    border: none;
+    background-color: #fff;
+    padding-left: 1em;
 }
+
 .contact form input[type="submit"] {
-	width: 80px;
-	height: 41px;
-	background-color: #6F7178;
-	outline: none;
-	border:none;
-	font: 15px 微软雅黑;
-	color: white;
+    width: 80px;
+    height: 41px;
+    background-color: #6F7178;
+    outline: none;
+    border: none;
+    font: 15px 微软雅黑;
+    color: white;
 }
+
 .contact ul li {
-	display: inline-block;
-	margin-top: 36px;
+    display: inline-block;
+    margin-top: 36px;
 }
+
 .contact ul li:not(:last-child) {
-	margin-right: 25px;
+    margin-right: 25px;
 }
+
 footer {
-	height: 59px;
-	background-color: #31323B;
-	font: 12px 宋体;
-	line-height: 59px;
-	padding: 0 40px 0 100px;
+    height: 59px;
+    background-color: #31323B;
+    font: 12px 宋体;
+    line-height: 59px;
+    padding: 0 40px 0 100px;
 }
+
 footer span:last-child {
-	float: right;
+    float: right;
 }
