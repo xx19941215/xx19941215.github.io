@@ -256,34 +256,34 @@ aside {
 做了这个任务，感觉自己对css3的一些属性的记忆和掌握不是很好。这里记录一些做任务过程中想起或者总结的属性。
 
 - 选择器部分：
-`:target` 例如#news:target ，通常在a标签下添加的href属性为`#news`，则该选择器会选择id属性为`new`的元素(该元素即当前活动的目标元素)。
-`element1~element2`:选择前面有element1的每一个element2元素。e1和e2是同级元素，拥有相同的父亲。
-`[attribute]`	用于选取带有指定属性的元素。
-`[attribute=value]`	用于选取带有指定属性和值的元素。
-`[attribute~=value]`	用于选取属性值中包含`指定词汇`的元素。
-`[attribute|=value]`	用于选取带有以指定值开头的属性值的元素，该值必须是`整个单词`。
-`[attribute^=value]`	匹配属性值以指定值开头的每个元素。
-`[attribute$=value]`	匹配属性值以指定值结尾的每个元素。
-`[attribute*=value]`	匹配属性值中包含指定值的每个元素。
+	- `:target` 例如#news:target ，通常在a标签下添加的href属性为`#news`，则该选择器会选择id属性为`new`的元素(该元素即当前活动的目标元素)。
+	- `element1~element2`:选择前面有element1的每一个element2元素。e1和e2是同级元素，拥有相同的父亲。
+	- `[attribute]`	用于选取带有指定属性的元素。
+	- `[attribute=value]`	用于选取带有指定属性和值的元素。
+	- `[attribute~=value]`	用于选取属性值中包含`指定词汇`的元素。
+	- `[attribute|=value]`	用于选取带有以指定值开头的属性值的元素，该值必须是`整个单词`。
+	- `[attribute^=value]`	匹配属性值以指定值开头的每个元素。
+	- `[attribute$=value]`	匹配属性值以指定值结尾的每个元素。
+	- `[attribute*=value]`	匹配属性值中包含指定值的每个元素。
 `*` 选择所有元素
-`:root`匹配文档根元素
-`::selection`文字选中时候的样式
+	- `:root`匹配文档根元素
+	- `::selection`文字选中时候的样式
 
 - CSS3 Transition 
 transition即过渡属性。`transition` 属性是一个简写属性，用于设置四个过渡属性：`transition-property`（规定设置过渡效果的 CSS 属性的名称），`transition-duration`（规定完成过渡效果需要多少秒或毫秒），`transition-timing-function`（规定速度效果的速度曲线），`transition-delay`（定义过渡效果何时开始）[例子](http://www.w3school.com.cn/tiy/t.asp?f=css3_transition)
 其中transition-timing-function 属性规定过渡效果的速度曲线，该属性允许过渡效果随着时间来改变其速度，默认`ease`，其他的值和描述分别为：
-`linear`	规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。
-`ease`	规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。
-`ease-in`	规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。
-`ease-out`	规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。
-`ease-in-out`	规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。
-`cubic-bezier(n,n,n,n)`	在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
-[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transition-timing-function3)
+	- `linear`	规定以相同速度开始至结束的过渡效果（等于 cubic-bezier(0,0,1,1)）。
+	- `ease`	规定慢速开始，然后变快，然后慢速结束的过渡效果（cubic-bezier(0.25,0.1,0.25,1)）。
+	- `ease-in`	规定以慢速开始的过渡效果（等于 cubic-bezier(0.42,0,1,1)）。
+	- `ease-out`	规定以慢速结束的过渡效果（等于 cubic-bezier(0,0,0.58,1)）。
+	- `ease-in-out`	规定以慢速开始和结束的过渡效果（等于 cubic-bezier(0.42,0,0.58,1)）。
+	- `cubic-bezier(n,n,n,n)`	在 cubic-bezier 函数中定义自己的值。可能的值是 0 至 1 之间的数值。
+	[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transition-timing-function3)
 
 - CSS3 2D转换
 通过 CSS3 转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸。2D转换有如下方法：
-1.translate() 元素从当前位置移动，根据给定的 left（x 坐标） 和 top（y 坐标） 位置参数。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_translate)
-2.rotate() 元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_rotate)
-3.scale() 通过 scale() 方法，元素的尺寸会增加或减少，根据给定的宽度（X 轴）和高度（Y 轴）参数 例如：值 scale(2,4) 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_scale)
-4.skew() 通过 skew() 方法，元素翻转给定的角度，根据给定的水平线（X 轴）和垂直线（Y 轴）参数，例如值 skew(30deg,20deg) 围绕 X 轴把元素翻转 30 度，围绕 Y 轴翻转 20 度。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_skew)
-5.matrix() matrix() 方法把所有 2D 转换方法组合在一起。matrix() 方法需要六个参数，包含数学函数，允许您：旋转、缩放、移动以及倾斜元素。
+	- translate() 元素从当前位置移动，根据给定的 left（x 坐标） 和 top（y 坐标） 位置参数。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_translate)
+	- rotate() 元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_rotate)
+	- scale() 通过 scale() 方法，元素的尺寸会增加或减少，根据给定的宽度（X 轴）和高度（Y 轴）参数 例如：值 scale(2,4) 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_scale)
+	- skew() 通过 skew() 方法，元素翻转给定的角度，根据给定的水平线（X 轴）和垂直线（Y 轴）参数，例如值 skew(30deg,20deg) 围绕 X 轴把元素翻转 30 度，围绕 Y 轴翻转 20 度。[DEMO](http://www.w3school.com.cn/tiy/t.asp?f=css3_transform_skew)
+	- matrix() matrix() 方法把所有 2D 转换方法组合在一起。matrix() 方法需要六个参数，包含数学函数，允许您：旋转、缩放、移动以及倾斜元素。
