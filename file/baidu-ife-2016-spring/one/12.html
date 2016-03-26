@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK001_12</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    table thead tr {
+        background-color: black;
+        color: white;
+        text-align: left;
+    }
+    
+    table tbody tr:nth-child(n) {
+        color: red;
+    }
+    
+    table tbody tr:nth-child(n+4) {
+        color: black;
+    }
+    
+    table tbody tr:nth-child(even) {
+        background-color: #CECACF;
+    }
+    
+    table tbody tr:nth-child(odd) {
+        background-color: #FFFEFE;
+    }
+    
+    input {
+        width: 100px;
+        transition: width 2s ;
+    }
+    
+    input:focus {
+        width: 200px;
+    }
+    
+    .container {
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        z-index: 1;
+        position: relative;
+    }
+    
+    .rotation {
+        width: 900px;
+        height: 200px;
+        position: relative;
+        transition: left 1s ease;
+        left: 0;
+    }
+    
+    .rotation-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .rotation-button a {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        color: black;
+        background-color: white;
+        text-align: center;
+        line-height: 15px;
+        font-size: 10px;
+        cursor: pointer;
+        opacity: 0.5
+    }
+    
+    .rotation-button a:not(:last-child) {
+        margin-right: 2px;
+    }
+    
+    #img1:target ~ .rotation {
+        left: 0;
+    }
+    
+    #img2:target ~ .rotation {
+        left: -300px;
+    }
+    
+    #img3:target ~ .rotation {
+        left: -600px;
+    }
+    .div1 {
+    	width: 100px;
+    	height: 100px;
+    	background-color: red;
+    	transition: width 2s, height 2s, -webkit-transform 2s;
+    }
+    .div1:hover {
+    	-webkit-transform: rotate(360deg);
+    	width: 200px;
+    	height: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>排名</th>
+                <th>网站</th>
+                <th>热度</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.</td>
+                <td>百度前端技术学院</td>
+                <td>13000</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>百度前端技术学院</td>
+                <td>12000</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>百度前端技术学院</td>
+                <td>11000</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>百度前端技术学院</td>
+                <td>10000</td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td>百度前端技术学院</td>
+                <td>9000</td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td>百度前端技术学院</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td>百度前端技术学院</td>
+                <td>7000</td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td>百度前端技术学院</td>
+                <td>6000</td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td>百度前端技术学院</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td>百度前端技术学院</td>
+                <td>4000</td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="text">
+    <div class="container">
+        <div>
+        	<div id="img1"></div>
+        	<div id="img2"></div>
+        	<div id="img3"></div>
+            <div class="rotation">
+                <img src="img/transition1.jpg" alt=""><img src="img/transition2.jpg" alt=""><img src="img/transition3.jpg" alt="">
+            </div>
+        </div>
+        <div class="rotation-button">
+            <a href="#img1">1</a>
+            <a href="#img2">2</a>
+            <a href="#img3">3</a>
+        </div>
+    </div>
+    <div class="div1">我会变换呀</div>
+</body>
+
+</html>

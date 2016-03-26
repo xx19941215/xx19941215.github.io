@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TASK001_8</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.container {
+			margin-right: 10px;
+			margin-left: 10px;
+			margin-top: 10px;
+		}
+		.container:before, .container:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.box {
+			padding: 10px;
+			float: left;
+		}
+		.inner {
+			height: 70px;
+			background-color: #eee;
+			border: 1px solid #999;
+		}
+		@media screen and (min-width: 768px) {
+			.col-md-4 {
+				width: 33.33333%;
+			}
+			.col-md-3 {
+				width: 25%;
+			}
+			.col-md-6 {
+				width: 50%;
+			}
+			.col-md-1 {
+				width: 8.33333%;
+			}
+			.col-md-2 {
+				width: 16.66667%;
+			}
+		}
+		@media screen and (max-width: 768px) {
+			.col-sm-6 {
+				width: 50%;
+			}
+			.col-sm-12 {
+				width: 100%;
+			}
+			.col-sm-3 {
+				width: 25%;
+			}
+			.col-sm-2 {
+				width: 16.66667%;
+			}
+			.col-sm-8 {
+				width: 66.66667%;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box col-md-4 col-sm-6"><div class="inner"></div></div>
+		<div class="box col-md-4 col-sm-6"><div class="inner"></div></div>
+		<div class="box col-md-4 col-sm-12"><div class="inner"></div></div>
+		<div class="box col-md-3 col-sm-3"><div class="inner"></div></div>
+		<div class="box col-md-6 col-sm-6"><div class="inner"></div></div>
+		<div class="box col-md-3 col-sm-3"><div class="inner"></div></div>
+		<div class="box col-md-1 col-sm-2"><div class="inner"></div></div>
+		<div class="box col-md-1 col-sm-2"><div class="inner"></div></div>
+		<div class="box col-md-2 col-sm-8"><div class="inner"></div></div>
+		<div class="box col-md-2 col-sm-3"><div class="inner"></div></div>
+		<div class="box col-md-6 col-sm-3"><div class="inner"></div></div>
+	</div>
+</body>
+</html>
