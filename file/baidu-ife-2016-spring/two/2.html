@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<body>
+    <h3>污染城市列表</h3>
+    <ul id="aqi-list">
+        <!--   
+    <li>第一名：福州（样例），10</li>
+    <li>第二名：福州（样例），10</li> -->
+    </ul>
+    <script type="text/javascript">
+    var aqiData = [
+        ["北京", 90],
+        ["上海", 50],
+        ["福州", 10],
+        ["广州", 50],
+        ["成都", 90],
+        ["西安", 100]
+    ];
+    var m,n,arr;
+    (function() {
+
+        /*
+        在注释下方编写代码
+        遍历读取aqiData中各个城市的数据
+        将空气质量指数大于60的城市显示到aqi-list的列表中
+        */
+        var myArr = new Array();
+        for (var i = 0, len = aqiData.length; i < len; i++) {
+            if (aqiData[i][1] > 60) {
+                myArr.push(aqiData[i]);
+            }
+        }
+        BubbleSort(myArr);
+        var newArr = myArr.reverse();
+        //创建DocumentFragment节点当做“仓库”
+        var fragment = document.createDocumentFragment();
+        for (var j = 0, len = newArr.length; j < len; j++) {
+            var txt = document.createTextNode("第"+(j+1)+"名："+newArr[j][0]+","+newArr[j][1]);
+            var li = document.createElement("li");
+            li.appendChild(txt);
+            fragment.appendChild(li);
+        }
+        document.querySelector("ul").appendChild(fragment);
+        
+    })();
+    //冒泡排序
+    function BubbleSort(arr) {
+        for (var i = 0, len = arr.length; i < len; i++) {
+            for (var j = len - 2; j >= i; j--) {
+                if (arr[j][1] > arr[j + 1][1]) {
+                  swap(arr,j,j+1);
+                }
+            }
+        }
+    }
+    //交换
+    function swap(arr,m,n){
+      var temp;
+      temp = arr[m];
+      arr[m] = arr[n];
+      arr[n] = temp;
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <script src="util.js"></script>
+    <script src="task_5_2.js"></script>
+    <style>
+    	* {
+    		margin: 0;
+    		padding: 0;
+    		box-sizing: border-box;
+    	}
+    	.sel {
+    		margin: 0 auto;
+    		width: 1200px;
+    		display: flex;
+    		justify-content: space-between;
+    		margin-bottom: 10px;
+    	}
+		fieldset {
+			margin: 0 auto;
+			width: 500px;
+			border-radius: 10px;
+			height: 40px;
+			display: inline-block;
+			padding-left: 10px;
+		}
+		.aqi-chart-wrap {
+			margin: 0 auto;
+			width: 1220px;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			border: 1px solid gray;
+			height: 600px;
+			display: none;
+			display: flex;
+			justify-content: space-around;
+			align-items: flex-end;
+			background-color: #EFEDD7;
+			overflow: hidden;
+			position: relative;
+			text-align: center;
+		}
+		.aqi-chart-wrap h1 {
+			position: absolute;
+			top: 5px;
+			font-size: 14px;
+			margin: 0 auto;
+			width: 100%;
+		}
+		.aqi-chart-wrap > div {
+			position: relative;
+		}
+		.aqi-chart-wrap > div > div {
+			animation: my 1s forwards;
+			position: absolute;
+		}
+		.aqi-chart-wrap > div > div:hover {
+			cursor: pointer;
+			box-shadow: 2px 2px 2px black;
+		}
+		.aqi-chart-wrap > div > div:active {
+			opacity: 0.5;
+		}
+		@keyframes my {
+			from {bottom: -100%;}
+			to {bottom: 0;}
+		}
+    </style>
+  </head>
+<body>
+<div class="sel">
+  <fieldset id="form-gra-time">
+    <legend>请选择日期粒度：</legend>
+    <label>日<input name="gra-time" value="day" type="radio" checked="checked"></label>
+    <label>周<input name="gra-time" value="week" type="radio"></label>
+    <label>月<input name="gra-time" value="month" type="radio"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>请选择查看的城市：</legend>
+    <select id="city-select">
+    </select>
+  </fieldset>
+</div>
+  <div class="aqi-chart-wrap">
+  </div>
+</body>
+</html>
