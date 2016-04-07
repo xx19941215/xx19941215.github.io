@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK002_8</title>
+    <script src="util.js"></script>
+    <style>
+    .res {
+        margin-top: 10px;
+        margin-left: 10px;
+        display: inline-block;
+    }
+    
+    .res div {
+        display: inline-block;
+        width: 150px;
+        height: 250px;
+        background: linear-gradient(to bottom, blue, white);
+        text-align: center;
+        line-height: 30px;
+        margin-right: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+    <input type="text" id="search-text" placeholder="请输入要查询的内容">
+    <button id="search">查询</button>
+    <br />
+    <div class="res">
+    </div>
+    <script>
+    /**
+     * @author [Xiao]
+     * @date   [2016-4-3]
+     */
+    //存储数据数组
+    var data = ["PHP","ES6","数据结构"];
+
+    /**
+     * [验证字符串的合法性]
+     * @param  {string} str [待验证字符串]
+     * @return {boolean}     [description]
+     */
+    function validate(str) {
+        return /^\d+$/.test(str);
+    }
+    $("#left-in").onclick = function() {
+        try {
+            var strArr = getInputValue();
+            for (var key in strArr) {
+            	if(strArr[key] !== "")
+                data.unshift(strArr[key]);
+            }
+            render();
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#right-in").onclick = function() {
+        try {
+            var strArr = getInputValue();
+            for (var key in strArr) {
+            	if(strArr[key] !== "")
+                data.push(strArr[key]);
+            }
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#left-out").onclick = function() {
+
+
+        var leftOut = data.shift();
+        alert(leftOut);
+        render();
+
+    }
+    $("#right-out").onclick = function() {
+
+        var rightOut = data.pop();
+        alert(rightOut);
+        render();
+
+    }
+    $(".res").onclick = function(e) {
+        var ele = EventUtil.getTarget(e);
+        var index = [].indexOf.call(ele.parentNode.childNodes, ele);
+        var removed = data.splice(index, 1);
+        alert(removed);
+        render();
+    }
+    $("#search").onclick = function() {
+    	var txt = $("#search-text").value;
+    	for(var key in data){
+    		var reg = new RegExp(txt);
+    		var r = data[key].search(reg);;
+    		if(r !== -1){
+    			var e = $(".res").childNodes.item(key);
+    			var mark = e.innerText.replace(reg,"<font color='white'>"+txt+"</font>");
+    			e.innerHTML = mark;
+    			return;
+    		}
+    		
+    	}
+    	alert("没有找到！");
+    	
+    }
+    function render() {
+        $(".res").innerHTML = data.map(function(item) {
+            return "<div>" + item + "</div>";
+        }).join("");
+    }
+
+    function getInputValue() {
+        var str = $("textarea").value;
+        var reg = new RegExp("[;；、,，\s\r\n0-9a-zA-Z\u4E00-\u9FA5]+");
+        if (!reg.test(str)) {
+        	throw new Error("非法输入");
+        } else {
+            var strArr = str.replace(/[;；、,，\s\r\n]+/g, " ").split(" ");
+            return strArr;
+        }
+    }
+    function $(ele) {
+        return document.querySelector(ele);
+    }
+    window.load = render();
+    </script>
+</body>
+
+</html>

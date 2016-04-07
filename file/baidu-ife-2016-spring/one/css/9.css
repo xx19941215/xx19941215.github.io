@@ -1,0 +1,56 @@
+/*common css*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 微软雅黑;
+	background-color: #EDEDEC;
+	min-width: 1280px;
+}
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration:none; 
+}
+ul {
+	list-style: none;
+}
+.clearfix:before, .clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+/*header css*/
+header {
+	width: 100%;
+	height: 57px;
+	background-color: #2189BF;
+	color: white;
+}
+header img {
+	display: inline-block;
+	margin-left: 50px;
+	margin-top: 10px;
+}
+header a {
+	float: right;
+	background: url("../img/9/user.png") no-repeat 0 50%;
+	padding-left:  20px;
+	height: 57px;
+	font: 12px/57px 黑体;
+	color: white;
+	margin-right: 100px;
+}
+header input {
+	height: 28px;
+	width: 313px;
+	border-radius: 15px;
+	border: none;
+	outline: none;
+	transform: translate(0,50%);
+	background: #fff url("../img/9/search.png") no-repeat 5px 50%;
+	padding-left: 2em;
+	float: right;
+	margin-right: 20px;
+}
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK002_6</title>
+    <script src="util.js"></script>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .res {
+        width: 1250px;
+        height: 120px;
+        margin-left: 10px;
+        margin-top: 10px;
+        display: flex;
+        align-items: flex-end;
+    }
+    
+    .res > div {
+        flex-basis: 15px;
+        background-color: red;
+        margin-left: 5px;
+        font-size: 10px;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+    }
+    .res div:hover {
+        opacity: .5;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="number" step="1">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+    <button id="random">随机生成</button>
+    <button id="sort">排序</button>
+    <div class="res"></div>
+    <script>
+    //存储数据数组
+    var data = [];
+
+    /**
+     * [验证字符串的合法性]
+     * @param  {string} str [待验证字符串]
+     * @return {boolean}     [description]
+     */
+    function validate(str) {
+        var str = parseInt(str);
+        return /^\d+$/.test(str) && str >= 10 && str <= 100;
+    }
+    $("#left-in").onclick = function() {
+        try {
+            data.unshift(getInputValue());
+            render();
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#right-in").onclick = function() {
+        try {
+            data.push(getInputValue());
+            render();
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#left-out").onclick = function() {
+    	
+        
+        var leftOut = data.shift();
+        alert(leftOut);
+        render();
+
+    }
+    $("#right-out").onclick = function() {
+
+        var rightOut = data.pop();
+        alert(rightOut);
+        render();
+
+    }
+    $(".res").onclick = function(e) {
+    	var ele = EventUtil.getTarget(e);
+        var num = parseInt(ele.innerHTML);
+        var index = [].indexOf.call(data, num);
+        var removed = data.splice(index,1);
+        alert(removed);
+        render();
+    }
+    $("#random").onclick = function() {
+        data = [];
+        for(var i = 0;i<60;i++) {
+            data.push(getNum());
+        }
+        render();
+        $("#left-in").setAttribute("disabled","disabled");
+        $("#right-in").setAttribute("disabled","disabled");
+        function getNum() {
+            return Math.floor(Math.random()*90+10);
+        }
+
+    }
+    var timmer;
+    $("#sort").onclick = function () {
+        timer = setInterval(sort,100);
+    }
+
+    function sort() {
+        for(var i = 0, len = data.length; i < len; i ++){
+            for(var j = len - 2; j >= i; j--){
+                if(data[j + 1] < data[j]){
+                    swap(data,j+1,j);
+                    render();
+                    return false;
+                }
+            }
+
+        }
+        clearInterval(timer);
+        function swap(arr, index_a, index_b) {
+            var temp;
+            temp = arr[index_a];
+            arr[index_a] = arr[index_b];
+            arr[index_b] = temp;
+        }
+    }
+    function render() {
+        $(".res").innerHTML = data.map(function(item) {
+            return "<div style='height:"+item+"px'>" + item + "</div>";
+        }).join(" ");
+    }
+
+    function getInputValue() {
+        var numStr = $("input").value;
+        if (!validate(numStr) && data.length > 60) throw new Error("input illegal");
+        return parseInt(numStr);
+    }
+
+    function $(ele) {
+        return document.querySelector(ele);
+    }
+    </script>
+</body>
+
+</html>

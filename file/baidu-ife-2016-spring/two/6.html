@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK002_6</title>
+    <script src="util.js"></script>
+    <style>
+    .res {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    
+    .res div {
+        display: inline-block;
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+        background-color: red;
+        text-align: center;
+        line-height: 30px;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="number" step="1">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+    <div class="res">
+    </div>
+    <script>
+    //存储数据数组
+    var data = [];
+
+    /**
+     * [验证字符串的合法性]
+     * @param  {string} str [待验证字符串]
+     * @return {boolean}     [description]
+     */
+    function validate(str) {
+        return /^\d+$/.test(str);
+    }
+    $("#left-in").onclick = function() {
+        try {
+            data.unshift(getInputValue());
+            render();
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#right-in").onclick = function() {
+        try {
+            data.push(getInputValue());
+            render();
+        } catch (ex) {
+            alert(ex.message);
+        }
+    }
+    $("#left-out").onclick = function() {
+    	
+        
+        var leftOut = data.shift();
+        alert(leftOut);
+        render();
+
+    }
+    $("#right-out").onclick = function() {
+
+        var rightOut = data.pop();
+        alert(rightOut);
+        render();
+
+    }
+    $(".res").onclick = function(e) {
+    	var ele = EventUtil.getTarget(e);
+        var index = [].indexOf.call(ele.parentNode.childNodes, ele);
+        var removed = data.splice(index,1);
+        alert(removed);
+        render();
+    }
+
+    function render() {
+        $(".res").innerHTML = data.map(function(item) {
+            return "<div>" + item + "</div>";
+        }).join("");
+    }
+
+    function getInputValue() {
+        var numStr = $("input").value;
+        if (!validate(numStr)) throw new Error("input error");
+        return parseInt(numStr);
+    }
+
+    function $(ele) {
+        return document.querySelector(ele);
+    }
+    </script>
+</body>
+
+</html>

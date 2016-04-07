@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK002_9</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    .tagShow,
+    .hobbyShow {
+        width: 100%;
+        height: 30px;
+        background-color: gray;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 3px;
+    }
+    
+    .tagShow > div,
+    .hobbyShow > div {
+        display: inline-block;
+        margin-right: 5px;
+        background-color: #8BCAFF;
+        border-radius: 3px;
+    }
+    .tagShow > div:hover,.hobbyShow > div:hover {
+		cursor: pointer;
+		box-shadow: 2px 2px 2px #000;
+		color: red;
+    }
+    .tagShow > div::before, .hobbyShow > div::before {
+    	content: "";
+    	width: 4em;
+    }
+    .tagShow > div:hover::before, .hobbyShow > div:hover::before {
+    	content: "点击删除";
+    	width: 5em;
+    	display: inline-block;
+    	transition: width 0.5s;
+    }
+    </style>
+</head>
+
+<body>
+    <span>TAGS:</span>
+    <input type="text" placeholder="请输入TAGS" id="txtTags">
+    <div class="tagShow"></div>
+    <textarea name="" id="textHobby" cols="30" rows="10" placeholder="请输入兴趣爱好"></textarea>
+    <button>确认</button>
+    <div class="hobbyShow"></div>
+    <script>
+    window.onload = function() {
+        (function() {
+            function GetListObj(divContainer) {
+                this.data = [];
+                this.redner = function() {
+                    var str = this.data.map(function(item) {
+                        return "<div>" + item + "</div>";
+                    }).join("");
+                    divContainer.innerHTML = str;
+                    addDivEvent(divContainer, this);
+                }
+            }
+
+            GetListObj.prototype.del = function(index) {
+                this.data.splice(index, 1);
+            }
+            GetListObj.prototype.push = function(item) {
+                this.data.push(item);
+            }
+            GetListObj.prototype.unshift = function() {
+                this.data.unshift(item);
+            }
+            GetListObj.prototype.pop = function() {
+                this.data.pop();
+            }
+            GetListObj.prototype.shift = function() {
+                this.data.shift();
+            }
+            var tag = document.querySelector(".tagShow");
+            var tagList = new GetListObj(tag);
+            tagList.data = ["PHP", "ES6"];
+            tagList.redner();
+            var hobby = document.querySelector(".hobbyShow");
+            var hobbyList = new GetListObj(hobby);
+            hobbyList.data = ["唱歌", "健身"];
+            hobbyList.redner();
+            var txtTags = document.querySelector("#txtTags");
+            txtTags.onkeyup = updataTags;
+            var btn = document.querySelector("button");
+            btn.onclick = updataHobby;
+            /**
+             * [给Tag和Hobby的项目添加点击事件]
+             * @param {Object} divContainer
+             * @param {Object} list
+             */
+            function addDivEvent(divContainer, list) {
+                var divs = divContainer.querySelectorAll("div");
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].onclick = function(i) {
+                        return function() {
+                            list.del(i);
+                            list.redner();
+                        }
+                    }(i)
+                }
+            }
+
+            function updataTags(e) {
+                e = event || window.event;
+                var num = e.keyCode;
+                var str = trim(txtTags.value);
+                if ((num == 32 || num == 13 || num == 188) && str != "") {
+                    if (tagList.data.indexOf(str) == -1) {
+                        if (tagList.data.length >= 10) {
+                            tagList.shift();
+                        }
+                        if(num == 188) {
+                        	str = str.substr(0,str.length-1);
+                        }
+                        tagList.push(str);
+                        tagList.redner();
+                    }
+                }
+            }
+
+            function updataHobby() {
+                var arr = getValue();
+                try {
+                    for (var i = 0; i < arr.length; i++) {
+                        if (hobbyList.data.indexOf(arr[i]) == -1) {
+                            hobbyList.data.push(arr[i]);
+                        }else {
+                        	throw new Error("已有"+arr[i]);
+                        }
+                        if (hobbyList.data.length > 10) {
+                            var removed = hobbyList.data.length - 10;
+                            for (var j = 0; j < removed; j++) {
+                                hobbyList.shift();
+                            }
+                        }
+                        hobbyList.redner();
+                    }
+                } catch (ex) {
+                    alert(ex.message);
+                }
+            }
+
+            function getValue() {
+                var str = document.querySelector("#textHobby").value;
+                var reg = new RegExp("[;；、,，\s\r\n0-9a-zA-Z\u4E00-\u9FA5]+");
+                if (!reg.test(str)) {
+                    throw new Error("非法输入");
+                } else {
+                    var strArr = str.replace(/[;；、,，\s\r\n]+/g, " ").split(" ");
+                    return strArr;
+                }
+            }
+            /**
+             * [Trim函数]
+             * @param  {[string]} str 
+             * @return {[string]}    
+             */
+            function trim(str) {
+                return str.replace(/^\s+|\s+$/g, "");
+            }
+        })();
+    }
+    </script>
+</body>
+
+</html>
