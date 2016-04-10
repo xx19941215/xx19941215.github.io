@@ -78,15 +78,29 @@
         <button id="depthFirstSearch">深度优先查找</button>
         <button id="breadthFirstSearch">广度优先查找</button>
     </section>
+    <br/>
+    <section>
+        <button id="deleteNode">
+            删除选中节点及所有子节点
+        </button>
+        <input type="text" placeholder="在此填写节点名称" id="nodeName">
+        <button id="insertNode">
+            在选中节点下增加子节点
+        </button>
+    </section>
 </body>
 <script src="util.js"></script>
 <script>
+(function() {
     var root = $(".box_1");
     var btnDepthFirst = $("#depthFirst");
     var btnBreadthFirst = $("#breadthFirst");
     var btnDepthFirstSearch = $("#depthFirstSearch");
     var btnBreadthFirstSearch = $("#breadthFirstSearch");
+    var btnDeleteNode = $("#deleteNode");
+    var btnInsertNode = $("#insertNode");
     var traveler = new Travel();
+    var selDiv;
     EventUtil.addHandle(btnDepthFirst, "click", function() {
         traveler.depthFirst(root);
         traveler.animation();
@@ -105,108 +119,135 @@
         traveler.animation(Trim($("input").value));
         traveler.nodes = 0;
     });
-
-function Travel() {
-    this.stake = [];
-    this.isTraveling = false;
-    this.nodes = 0;
-}
-//深度优先遍历
-Travel.prototype.depthFirst = function(node) {
-        if (node) {
-            this.stake.push(node);
-        }
-        if (node && node.childElementCount != 0) {
-            this.depthFirst(node.firstElementChild);
-        }
-        if (node) {
-            this.depthFirst(node.nextElementSibling);
+    EventUtil.addHandle(btnDeleteNode, "click", function() {
+        selDiv.parentNode.removeChild(selDiv);
+    });
+    EventUtil.addHandle(btnInsertNode, "click", function() {
+        var txtNode = document.createTextNode($("#nodeName").value);
+        var aDiv = document.createElement("div");
+        aDiv.appendChild(txtNode);
+        selDiv.parentNode.appendChild(aDiv);
+    });
+    //给box_1添加点击事件,代理所有子元素的点击事件
+    EventUtil.addHandle(root, "click", function(e) {
+        clear();
+        var event = EventUtil.getEvent(e);
+        //取得真正被点击的元素块
+        var src = EventUtil.getTarget(event);
+        src.style.backgroundColor = "pink";
+        selDiv = src;
+    });
+    //清理点击DIV颜色
+    function clear() {
+        var divs = document.getElementsByTagName('div');
+        for (var i = 0; i < divs.length; i++) {
+            divs[i].style.backgroundColor = "#fff";
         }
     }
-//广度优先遍历
-Travel.prototype.breadthFirst = function(node) {
-        if (node) {
-            this.stake.push(node);
-            this.breadthFirst(node.nextElementSibling);
-            node = this.stake[this.nodes++];
-            this.breadthFirst(node.firstElementChild);
-        }
 
+    function Travel() {
+        this.stake = [];
+        this.isTraveling = false;
+        this.nodes = 0;
     }
-//动画函数,传参则为搜索
-Travel.prototype.animation = function(val) {
-    var stake = this.stake,
-        timer,
-        that = this,
-        item = 0,
-        duration,
-        endTime,
-        startTime = new Date().getTime();
-
-    this.stake = [];
-    //全部背景颜色重置为白色
-    for(var key in stake) {
-    	stake[key].style.backgroundColor = "#fff";
-    }
-    if (!that.isTraveling == true) {
-    	//动画状态设置为true
-        that.isTraveling = true;
-        //假如第一个元素是所搜索内容
-        if(Trim(stake[item].firstChild.nodeValue) == val){
-        	//设置为红色
-            stake[item].style.backgroundColor = "red";
-            endTime = new Date().getTime();
-            duration =endTime - startTime;
-            alert("耗时"+duration+"毫秒");
-        }else{
-        	//否则设置为蓝色，表示开始遍历
-        	stake[item].style.backgroundColor = "#0000FC";
-        }
-        timer = setInterval(function() {
-        	//要是遍历到最后一个
-            if (item == stake.length - 1) {
-            	//清除定时器
-                clearInterval(timer);
-                //设置状态
-                that.isTraveling = false;
-                //背景变为白色
-                stake[item].style.backgroundColor = "#fff";
-            } else {
-            	//否则向数组后面的元素遍历
-                item++;
-                //要是前一个文本子节点所搜索的字符相等，背景仍然是红色
-                if(stake[item - 1].firstChild && Trim(stake[item - 1].firstChild.nodeValue) == val){
-                	//设置为红色
-                	stake[item].style.backgroundColor = "red";
-                }else {
-                	//否则前面的元素背景设置为白色
-                	stake[item - 1].style.backgroundColor = "#fff";
-                }
-                //这个元素背景设置为蓝色
-                stake[item].style.backgroundColor = "#0000FC";
-                //要是和所搜索字符串相等，则设置为红色
-                if(stake[item].firstChild){
-                	if(Trim(stake[item].firstChild.nodeValue) == val){
-                		//因为是一瞬间完成，所以看不到蓝色到红色的变化
-                		stake[item].style.backgroundColor = "red";
-                		endTime = new Date().getTime();
-			            duration = endTime - startTime;
-			            alert("耗时"+duration+"毫秒");
-                	}
-                }
-
+    //深度优先遍历
+    Travel.prototype.depthFirst = function(node) {
+            if (node) {
+                this.stake.push(node);
             }
-        }, 500);
+            if (node && node.childElementCount != 0) {
+                this.depthFirst(node.firstElementChild);
+            }
+            if (node) {
+                this.depthFirst(node.nextElementSibling);
+            }
+        }
+        //广度优先遍历
+    Travel.prototype.breadthFirst = function(node) {
+            if (node) {
+                this.stake.push(node);
+                this.breadthFirst(node.nextElementSibling);
+                node = this.stake[this.nodes++];
+                this.breadthFirst(node.firstElementChild);
+            }
+
+        }
+        //动画函数,传参则为搜索
+    Travel.prototype.animation = function(val) {
+        var stake = this.stake,
+            timer,
+            that = this,
+            item = 0,
+            duration,
+            endTime,
+            startTime = new Date().getTime();
+
+        this.stake = [];
+        //全部背景颜色重置为白色
+        for (var key in stake) {
+            stake[key].style.backgroundColor = "#fff";
+        }
+        if (!that.isTraveling == true) {
+            //动画状态设置为true
+            that.isTraveling = true;
+            //假如第一个元素是所搜索内容
+            if (Trim(stake[item].firstChild.nodeValue) == val) {
+                //设置为红色
+                stake[item].style.backgroundColor = "red";
+                endTime = new Date().getTime();
+                duration = endTime - startTime;
+                alert("耗时" + duration + "毫秒");
+            } else {
+                //否则设置为蓝色，表示开始遍历
+                stake[item].style.backgroundColor = "#0000FC";
+            }
+            timer = setInterval(function() {
+                //要是遍历到最后一个
+                if (item == stake.length - 1) {
+                    //清除定时器
+                    clearInterval(timer);
+                    //设置状态
+                    that.isTraveling = false;
+                    //背景变为白色
+                    stake[item].style.backgroundColor = "#fff";
+                } else {
+                    //否则向数组后面的元素遍历
+                    item++;
+                    //要是前一个文本子节点所搜索的字符相等，背景仍然是红色
+                    if (stake[item - 1].firstChild && Trim(stake[item - 1].firstChild.nodeValue) == val) {
+                        //设置为红色
+                        stake[item].style.backgroundColor = "red";
+                    } else {
+                        //否则前面的元素背景设置为白色
+                        stake[item - 1].style.backgroundColor = "#fff";
+                    }
+                    //这个元素背景设置为蓝色
+                    stake[item].style.backgroundColor = "#0000FC";
+                    //要是和所搜索字符串相等，则设置为红色
+                    if (stake[item].firstChild) {
+                        if (Trim(stake[item].firstChild.nodeValue) == val) {
+                            //因为是一瞬间完成，所以看不到蓝色到红色的变化
+                            stake[item].style.backgroundColor = "red";
+                            endTime = new Date().getTime();
+                            duration = endTime - startTime;
+                            alert("耗时" + duration + "毫秒");
+                        }
+                    }
+
+                }
+            }, 500);
+        }
+
     }
 
-}
+    function Trim(val) {
+        return val.replace(/(^\s+|\s+$)/g, "");
+    }
 
-function Trim (val) {
-	return val.replace(/(^\s+|\s+$)/g,"");
-}
-function $(sel) {
-    return document.querySelector(sel);
-}
+    function $(sel) {
+        return document.querySelector(sel);
+    }
+})()
 </script>
 
 </html>
