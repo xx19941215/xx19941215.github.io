@@ -126,7 +126,7 @@
         var txtNode = document.createTextNode($("#nodeName").value);
         var aDiv = document.createElement("div");
         aDiv.appendChild(txtNode);
-        selDiv.parentNode.appendChild(aDiv);
+        selDiv.appendChild(aDiv);
     });
     //给box_1添加点击事件,代理所有子元素的点击事件
     EventUtil.addHandle(root, "click", function(e) {

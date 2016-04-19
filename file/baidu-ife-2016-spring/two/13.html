@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TASK002_25</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    fieldset {
+        width: 400px;
+        position: relative;
+        left: 50%;
+        margin-left: -200px;
+        padding: 10px;
+    }
+    
+    fieldset button {
+        margin-left: 20px;
+    }
+    
+    fieldset > ul {
+        margin-top: 20px;
+    }
+    
+    ul,
+    li {
+        list-style: none;
+        -webkit-user-select: none;
+    }
+    
+    .lv-1 {
+        padding-left: 10px;
+    }
+    
+    .lv-2 {
+        margin-left: 20px;
+    }
+    
+    .lv-3 {
+        margin-left: 30px;
+    }
+    
+    ul .close::before, ul li::before {
+        content: "";
+        display: inline-block;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 10px solid #999;
+        margin-right: 5px;
+        vertical-align: baseline;
+        cursor: pointer;
+    }
+    
+    ul .open::before {
+        content: "";
+        display: inline-block;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        border-top: 10px solid #999;
+        margin-right: 5px;
+        vertical-align: baseline;
+        cursor: pointer;
+    }
+    
+    .menu {
+        width: 80px;
+        height: 40px;
+        border: 1px solid #BABABA;
+        display: none;
+        z-index: 2;
+        background-color: #fff;
+    }
+    
+    .menu div {
+        height: 20px;
+        padding-left: 10%;
+        font-size: 14px;
+        line-height: 20px;
+    }
+    
+    .menu div:hover {
+        background-color: #4281F4;
+        color: #fff;
+        cursor: auto;
+        -webkit-user-select: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div>添加</div>
+        <div>删除</div>
+    </div>
+    <fieldset id="tree-module">
+        <legend>树形组件</legend>
+        <input type="text" placeholder="JavaScript" id="searchText">
+        <button id="search">搜索</button>
+        <ul>
+            <li class="lv-1 open">计算机类目
+                <ul>
+                    <li class="lv-2 close">办公类
+                        <!-- <ul>
+							<li class="lv-3">Windows应用</li>
+							<li class="lv-3">Office快速入门</li>
+						</ul> -->
+                    </li>
+                    <li class="lv-2 close">编程类
+                        <!-- <ul>
+							<li class="lv-3">C语言程序设计</li>
+							<li class="lv-3">Java从入门到放弃</li>
+							<li class="lv-3">Asp.Net入门经典</li>
+						</ul> -->
+                    </li>
+                    <li class="lv-2 close">创意类
+                        <!-- <ul>
+							<li class="lv-3">PhotoShop创意设计</li>
+						</ul> -->
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </fieldset>
+    <script src="util.js"></script>
+    <script>
+    window.onload = function() {
+    	//存储节点对象
+    	var tempNode;
+    	var menu = $(".menu");
+        (function() {
+            var ele = $("ul");
+            EventUtil.addHandle(ele, "contextmenu", showMenu);
+            EventUtil.addHandle(menu,"click",hiddenMenu);
+        })();
+        
+        
+
+        function hiddenMenu(e){
+        	var event = EventUtil.getEvent(e);
+            var tar = EventUtil.getTarget(event);
+            var txt = tar.innerText;
+            if(txt == "删除") {
+            	tempNode.parentNode.removeChild(tempNode);
+            }else {
+            	var newMenu = prompt("请输入新的节点名称");
+            	var txt = document.createTextNode(newMenu);
+            	var li = document.createElement("li");
+            	li.appendChild(txt);
+            	tempNode.appendChild(li);
+            }
+
+            menu.style.display = "none";
+        }
+
+        function showMenu(e) {
+            var event = EventUtil.getEvent(e);
+            var tar = EventUtil.getTarget(event);
+            //保存被点击的菜单
+            tempNode = tar;
+            EventUtil.preventDefault(event);
+            EventUtil.stopPropagation(event);
+         	
+            menu.style.position = "absolute";
+            menu.style.left = event.clientX + "px";
+            console.log(event.clientX);
+            menu.style.top = event.clientY + "px";
+            console.log(menu.style.position);
+            menu.style.display = "block";
+        }
+
+        function $(ele) {
+            return document.querySelector(ele);
+        }
+    };
+    </script>
+</body>
+
+</html>

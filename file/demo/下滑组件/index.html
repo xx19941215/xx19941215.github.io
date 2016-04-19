@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<!--设定屏幕缩放;宽度为屏幕宽度;初始放大1.0;最大放大1.0;最小放大1.0;禁止用户缩放-->
+	<meta name="viewpoint" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimun=1.0,user-scalabel=no">
+	<!--针对Apple，可选-->
+	<!--是否允许成为全屏应用-->
+	<meta name="apple-touch-fullscreen" content="YES">
+	<!--设置Apple状态栏颜色-->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		/*使html body充满整个屏幕*/
+		html,body {
+			height: 100%;
+			width: 100%;
+		}
+		body {
+			background: #333;
+			overflow: hidden;
+		}
+		#canvas {
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		ul,li {
+			height: 100%;
+			width: 100%;
+			list-style: none;
+			overflow: hidden;
+		}
+		li {
+			display: -webkit-box;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+		}
+	</style>
+</head>
+<body>
+	<!--外层画布-->
+	<div id="canvas">
+		<ul>
+			<li style="-webkit-translate3d(0,0,0);position: absolute;">
+				<img src="img/1.jpg" alt="">
+			</li>
+			<li style="-webkit-translate3d(0,0,0);position: absolute;">
+				<img src="img/2.jpg" alt="">
+			</li style="-webkit-translate3d(0,0,0);position: absolute;">
+			<li>
+				<img src="img/3.jpg" alt="">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

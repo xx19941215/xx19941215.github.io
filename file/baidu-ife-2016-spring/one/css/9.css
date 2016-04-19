@@ -123,22 +123,20 @@ header input {
 	border: 2px solid #B0B1B6;
 	border-radius: 50%;
 	display: inline-block;
-	text-align: center;
-	line-height: 60px;
 }
 .profile .user-face .inner {
 	display: inline-block;
-	width: 47px;
-	height: 47px;
+	width: 48px;
+	height: 48px;
 	background-color: #B0B1B6;
 	border-radius: 50%;
-	margin-top: 4px;
+	transform: translateX(4px) translateY(4px);
 }
 .profile .user-face a {
 	color: #fff;
 	font: 16px/20.5px 黑体;
 	position: relative;
-	top: -20px;
+	top: -15px;
 	left: 15px;
 }
 
@@ -367,6 +365,8 @@ header input {
 /*销售按小时统计*/
 .detail-hour {
 	margin-top: 10px;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	justify-content: space-between;
 }
@@ -428,6 +428,8 @@ header input {
 	margin-bottom: 5px;
 }
 .deal-month-wrap {
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	justify-content: space-between;
 }
@@ -436,6 +438,7 @@ header input {
 	height: 71px;
 	background-color: #fff;
 	border: 1px solid #CFD2D5;
+	overflow: hidden;
 }
 .deal-month:nth-child(1) {
 	border-left: 3px solid #46B29E;
@@ -458,8 +461,8 @@ header input {
     width: 60px;
     height: 45px;
     margin: 12px 15px;
+    position: relative;
 }
-
 .deal-month .green {
 	background-color: #46B29E;
 }
@@ -495,6 +498,78 @@ header input {
 	height: 357px;
 	float: left;
 }
+/*项目材料*/
+.detail-material h2 {
+	margin-bottom: 10px;
+}
+.detail-material ul {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.detail-material ul li {
+	display: inline;
+}
+.detail-material ul li a {
+	display: inline-block;
+	//position: relative !important;
+	height: 27px;
+	width: 85px;
+	background-color: #EDEDF0;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	text-align: center;
+	line-height: 27px;
+	border: 1px solid #EDEDF0;
+	color: #000;
+
+}
+.detail-material ul li a:hover {
+	background-color: #fff;
+	border-top: 1px solid #D9DADA;
+	border-right: 1px solid #D9DADA;
+	border-left: 1px solid #D9DADA;
+	border-bottom: 1px solid #fff;
+}
+.detail-material ul {
+	//position: relative;
+}
+.detail-material ul li div {
+	position: absolute;
+	z-index: -2;
+}
+.detail-material ul li:not(:target) div {
+	position: absolute;
+}
+.detail-material ul li:not(:target) a {
+
+}
+.detail-material li:target > div {
+	z-index: 3 !important;
+}
+.detail-material .tab-content {
+	width: 490px;
+	height: 250px;
+	padding-left: 37px;
+	padding-top: 28px;
+	border: 1px solid #CACBCB;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.detail-material .tab-content table {
+	width: 403px;
+	height: 185px;
+	border-collapse: collapse;
+	border: 1px solid #E6E6E7;
+}
+.detail-material .tab-content table td {
+	border: 1px solid #E6E6E7;
+	text-align: center;
+}
+.detail-material .tab-content table td:hover {
+	background-color: #F4F5F6;
+}
+/*项目材料结束*/
 /*项目描述*/
 .detail-table {
 	width: 353px;
@@ -537,6 +612,8 @@ header input {
 .detail-data .detail-table .summary {
 	margin-left: 50px;
 	margin-right: 35px;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	border-bottom: 1px solid #E8E8E8;
 }
@@ -568,10 +645,12 @@ header input {
 	border-bottom: 1px solid #E8E8E8;
 }
 .detail-data .detail-table .summary .price {
+	-webkit-flex-grow:1;
 	flex-grow: 1;
 	border-right: 1px solid #E8E8E8;
 }
 .detail-data .detail-table .summary .head {
+	-webkit-flex-grow:1;
 	flex-grow: 2;
 	padding-left: 5px;
 }
@@ -582,6 +661,8 @@ header input {
 
 .detail-data .detail-date .date{
 	margin: 10px 22px;
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
 	justify-content: space-between;
 }
@@ -640,13 +721,37 @@ header input {
 	border-collapse: collapse;
 	width: calc( 100% - 84px );
 }
+.detail-rank table tr:hover {
+	background-color: #F4F5F6;
+	cursor: pointer;
+}
 .detail-rank table td, .detail-rank table th {
 	border: 1px solid #CACACB;
 	height: 24px;
 	line-height: 24px;
+	text-align: center;
 }
-.detail-rank table tr td:first-child {
-	width: 68px;
+.detail-rank table thead tr th:nth-child(3), .detail-rank table tr td:nth-child(3){
+	width: 64%;
+	padding-left: 30px;
+	text-align: left;
+}
+.detail-rank table thead tr th:nth-child(2){
+	width: 20.4%;
+}
+.detail-rank table tbody div {
+	display: inline-block;
+	width: 168px;
+	height: 4px;
+	background-color: #DCDCDC;
+	margin-left: 23px;
+	vertical-align: 4px;
+	border-radius: 1px;
+}
+.detail-rank table tbody div span {
+	display: block;
+	height: 100%;
+	border-radius: 1px;
 }
 /*汽车行业排行榜*/
 
