@@ -62,12 +62,12 @@ function uniqArray(arr) {
 function simpleTrim(str) {
     var i, j;
     for (var i = 0, len = str.length; i < len; i++) {
-        if (str.charAt(i) != " " && str.charAt(i) != "\t") {
+        if (str.charAt(i) != " " && str.charAt(i) != "\t" && str.charAt(i) != "\n") {
             break;
         }
     }
     for (var j = len - 1; j > 0; j--) {
-        if (str.charAt(j) != " " && str.charAt(j) != "\t") {
+        if (str.charAt(j) != " " && str.charAt(j) != "\t" && str.charAt(i) != "\n") {
             break;
         }
     }
