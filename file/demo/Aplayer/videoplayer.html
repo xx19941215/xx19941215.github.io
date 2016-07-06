@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>VideoPlayer</title>
+    <script>
+    	window.$ = HTMLElement.prototype.$ = function(sel){
+    		return (this == window ? document:this).querySelector(sel);
+    	};
+    	var videoPlayer = {
+    		vSrc:"source/video.mp4",
+    		vObj:null,
+    		vPaused:null,
+    		vEnded:null,
+    		vTime:null,
+    		vBtn:null,
+    		vPro:null,
+    		timer:null,
+    		vCurr:null,
+    		init:function(){
+    			this.vObj = $("video");
+    			this.vObj.src = this.vSrc;
+    			this.vPaused = this.vObj.paused;
+    			this.vEnded = this.vObj.ended;
+    			this.load();
+    			this.vBtn = $("button");
+    			this.vPro = $("#progress");
+    			this.vBtn.onclick = this.pause;
+    			this.vPro.parentNode.onclick = this.setTime;
+    			
+    		},
+    		setTime:function(e){
+    			var e = event || window.event;
+    			console.log(e);
+    			videoPlayer.vObj.currentTime = (e.offsetX/550)*videoPlayer.vTime;
+    			videoPlayer.showProgress();
+    			videoPlayer.vObj.paused = true;
+    			videoPlayer.vPaused = true;
+    		},
+    		pause:function(e){
+    			var e = event || window.event;
+    			if(videoPlayer.vPaused){
+    				this.innerHTML = "暂停";
+    				videoPlayer.vObj.play();
+    				videoPlayer.showProgress();
+    				videoPlayer.vPaused = false;
+    			}else if(!videoPlayer.vPaused){
+    				this.innerHTML = "播放";
+    				videoPlayer.vObj.pause();
+    				videoPlayer.vPaused = true;
+    			}
+    		},
+    		showProgress:function(){
+    			var self = this;
+    			
+    			this.timer = setInterval(function(){
+    				self.vCurr = self.vObj.currentTime;
+	    			if(self.vEnded || self.vPaused) {
+	    				
+	    				self.vObj.pause();
+	    				self.vBtn.innerHTML = "播放";
+	    				self.vPro.style.width = (self.vCurr/self.vTime)*100 + "%";
+	    				clearInterval(self.timer);
+						return;
+	    			}
+	    			console.log(self.vEnded);
+    				
+    				//console.log(self.vCurr/self.vTime);
+    				var jindu = (self.vCurr/self.vTime)*100;
+    				
+    				if(jindu>=100){
+    					jindu = 100;
+    					self.vPaused = true;
+    				}
+
+    				self.vPro.style.width = jindu + "%";
+    			},100);
+    		},
+    		load:function(){
+    			this.vObj.onloadedmetadata = function(){
+    				videoPlayer.vTime = parseInt(this.duration);
+    			}
+    		},
+
+    	};
+    	window.onload = function(){
+    		videoPlayer.init();
+    	};
+    </script>
+    <style>
+		section {
+			width: 700px;
+			margin: 0 auto;
+			box-shadow: 2px 2px #ddd;
+		}
+		.clr:after {
+			content: "";
+			display: block;
+			height: 0;
+			visibility: hidden;
+			clear: both;
+		}
+		#outer {
+			background-color: #ddd;
+			float: left;
+			width: 550px;
+			height: 20px;
+		}
+		#btn {
+			float: left;
+			margin-right: 15px;
+		}
+		#progress {
+			background-color: #f00;
+			height: 80%;
+			width: 0%;
+		}
+    </style>
+</head>
+
+<body>
+    <section class="clr">
+        <video src="" width="700"></video>
+        <nav>
+        <div id="btn"><button>播放</button></div>
+        <div id="outer">
+            <div id="progress"></div>
+        </div>
+    </nav>
+    </section>
+    
+</body>
+
+</html>
