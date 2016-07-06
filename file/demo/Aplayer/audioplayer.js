@@ -4,7 +4,7 @@ var json = '['+
 '{"title":"裂心","singer":"王力宏","src":"mp3/裂心.mp3","img":"mp3/liexin.jpg"},'+
 '{"title":"在梅边(live)","singer":"王力宏","src":"mp3/在梅边(Live).mp3","img":"mp3/zaimeibian.jpg"}'+']';
 
-window.$ = HTMLElement.$ = function(sel){
+window.$ = HTMLElement.prototype.$ = function(sel){
 	return (this == window?document:this).querySelectorAll(sel);
 };
 
@@ -22,10 +22,13 @@ var player = {
 	isEnded:false,
 	timer:null,
 	index:1,//歌曲索引
+	menuStatus:true,//true表示打开
+	isLoop:false,//false表示不循环
 	init:function(){
 		//初始化成员属性
 		this.oMusic = document.createElement("audio");
 		this.oMusic.src = data[0].src;
+		document.body.appendChild(this.oMusic);
 		this.title = data[0].title;
 		this.singer = data[0].singer;
 		this.img = data[0].img;
@@ -42,6 +45,19 @@ var player = {
 		$("#player-list ol")[0].onclick = this.setSong;
 		//点击PLAY按钮事件
 		$("#play-btn")[0].onclick = this.playOrPause;
+		//点击menu事件
+		$(".menu")[0].onclick = this.menuCloseOrOpen;
+		//点击loop事件
+		$(".loop")[0].onclick = this.loopOrNo;
+		//音量悬停事件
+		$("#volume-outer")[0].onmouseover = function(){
+			$("#volume-wrap")[0].style.display = "block";
+		};
+		$("#volume-outer")[0].onmouseout = function(){
+			$("#volume-wrap")[0].style.display = "none";
+		};
+		//设置音量
+		$("#volume-wrap")[0].onclick = this.setVolume;
 	},
 	//渲染DOM
 	render:function(){
@@ -67,22 +83,70 @@ var player = {
 		//如果当前是暂停的
 		if(player.isPause || player.isEnded) {
 			player.play();
-			$("#play-btn i")[0].style.fontSize = "14px";
-			$("#play-btn i")[0].innerHTML = "&#xe803;"
-			this.style.lineHeight = "16px";
-			this.style.animation = "ani .3s forwards";
-			this.style.mozAnimation = "ani .3s forwards";
-			this.style.webkitAnimation = "ani .3s forwards";
+			player.btnSmall();
 		}else {
 			//当前是播放的
 			player.pause();
-			$("#play-btn i")[0].style.fontSize = "24px";
-			$("#play-btn i")[0].innerHTML = "&#xe804;"
-			this.style.lineHeight = "26px";
-			this.style.animation = "ani-two .3s forwards";
-			this.style.mozAnimation = "ani-two .3s forwards";
-			this.style.webkitAnimation = "ani-two .3s forwards";
+			player.btnBig();
 		}
+	},
+	//当暂停时点击按钮
+	btnSmall:function(){
+		$("#play-btn i")[0].style.fontSize = "14px";
+		$("#play-btn i")[0].innerHTML = "&#xe803;"
+		$("#play-btn")[0].style.lineHeight = "16px";
+		$("#play-btn")[0].style.animation = "ani .2s forwards";
+		$("#play-btn")[0].style.mozAnimation = "ani .2s forwards";
+		$("#play-btn")[0].style.webkitAnimation = "ani .2s forwards";
+	},
+	//当播放时点击按钮
+	btnBig:function(){
+		$("#play-btn i")[0].style.fontSize = "24px";
+		$("#play-btn i")[0].innerHTML = "&#xe804;"
+		$("#play-btn")[0].style.lineHeight = "26px";
+		$("#play-btn")[0].style.animation = "ani-two .2s forwards";
+		$("#play-btn")[0].style.mozAnimation = "ani-two .2s forwards";
+		$("#play-btn")[0].style.webkitAnimation = "ani-two .2s forwards";
+	},
+	//menu事件处理
+	menuCloseOrOpen:function(){
+		if(player.menuStatus){
+			$("#player-list")[0].style.height = 0;
+			$("#container")[0].style.height = 66 + "px";
+			$(".menu")[0].style.color="#ddd";
+			player.menuStatus = false;
+		}else {
+			$("#player-list")[0].style.height = 96 + "px";
+			$("#container")[0].style.height = 162 + "px";
+			$(".menu")[0].style.color="#666";
+
+			player.menuStatus = true;
+		}
+	},
+	loopOrNo:function(){
+		if(player.isLoop){
+			player.oMusic.removeAttribute("loop");
+			player.isLoop = false;
+			this.style.color = "#ddd";
+		}else {
+			
+			player.oMusic.setAttribute("loop","");
+			player.isLoop = true;
+			this.style.color = "#666";
+		}
+	},
+	//设置音量
+	setVolume:function(e){
+		var e = event ? event :window.event;
+		var top = e.offsetY;
+		var vol = (35 - top)/35;
+		//设置样式
+		console.log(vol);
+		console.log(e.target.id)
+		$("#volume")[0].style.height = vol*100 + "%";
+		//设置音量
+		player.oMusic.volume = vol;
+		console.log(player.oMusic.volume);
 	},
 	//进度条事件
 	setTime:function(e){
@@ -106,6 +170,7 @@ var player = {
 		console.log(tar.nodeName);
 		if(tar.nodeName == "LI") {
 			
+			//更新播放歌曲数据
 			player.img = data[(tar.dataset.i)-1].img;
 			player.singer = data[(tar.dataset.i)-1].singer;
 			player.title = data[(tar.dataset.i)-1].title;
@@ -113,20 +178,23 @@ var player = {
 			player.paint();
 			player.play();
 			//按钮动画
-			$("#play-btn i")[0].style.fontSize = "14px";
-			$("#play-btn i")[0].innerHTML = "&#xe803;"
-			$("#play-btn")[0].style.lineHeight = "16px";
-			$("#play-btn")[0].style.animation = "ani .3s forwards";
-			$("#play-btn")[0].style.mozAnimation = "ani .3s forwards";
-			$("#play-btn")[0].style.webkitAnimation = "ani .3s forwards";
-			//设置相关样式
+			player.btnSmall();
 			
+			//要是点击的当前播放的list,开始播放，然后不做任何操作
+			if(tar.parentNode.$(".played-now")[0]==tar){
+				player.play();
+				return;
+			}
+			//设置相关样式
 			tar.setAttribute("class","played-now");
 			var oSpn = document.createElement("span");
 			oSpn.setAttribute("class","player-list-cur");
 			tar.insertBefore(oSpn,tar.firstChild);
+
+			//移除之前list的样式
 			this.children[player.index-1].removeAttribute("class");
 			this.children[player.index-1].removeChild(this.children[player.index-1].firstChild);
+			//更新当前player对象的index
 			player.index = tar.dataset.i;
 		}
 		
@@ -136,12 +204,15 @@ var player = {
 	//刻画进度条和时间
 	paint:function(){
 		player.curTime = player.oMusic.currentTime;
-		player.isEnded = player.oMusic.isEnded;
-		//console.log(player.curTime);
+		player.isEnded = player.oMusic.ended;
+		//console.log(player.isEnded);
 		$("#played")[0].style.width = ((player.curTime / player.time).toFixed(6))*100 + "%";
 		$("#ptime")[0].innerHTML = player.transTime(player.curTime);
 		if(player.isEnded){
-			cleatInterval(player.timer);
+			clearInterval(player.timer);
+			console.log(player.isEnded);
+			//按钮动画
+			player.btnBig();
 		}
 	},
 	//转换时间为XX:XX形式

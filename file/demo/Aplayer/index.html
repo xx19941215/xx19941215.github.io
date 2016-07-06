@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Player</title>
     <style>
     @font-face {
@@ -62,6 +63,7 @@
         margin: 0 auto;
         box-shadow: 0px 2px 2px 0px #ddd;
         border-radius: 2px;
+        transition: height .3s;
     }
     
     #player-img {
@@ -77,8 +79,11 @@
         font-style: normal;
         font-size: 16px;
         color: #666;
+        cursor: pointer;
     }
-    
+    #container .loop {
+    	color: #ddd;
+    }
     #player-control {
         font-size: 14px;
         padding: 0px 7px 0 10px;
@@ -97,7 +102,6 @@
         right: 5px;
         color: #A599A8;
     }
-    
     #control-bar {
         float: left;
         width: 420px;
@@ -186,6 +190,7 @@
     }
     #player-list{
     	height: 96px;
+    	transition: height .3s;
     }
     #player-img {
     	position: relative;
@@ -207,6 +212,32 @@
     	font-size: 24px;
     	color: #fff !important;
     }
+    #volume-wrap {
+    	position: absolute;
+    	width: 5px;
+    	height: 35px;
+    	background-color: #AAAAAA;
+    	top: -35px;
+    	right:6px;
+    }
+    #volume-outer {
+    	position: relative;
+    }
+    #volume {
+    	position: absolute;
+    	bottom: 0;
+    	width: 5px;
+    	
+    	background-color: #AD7A86;
+    	transition: height 0.3s;
+    }
+    #volume-mask {
+    	width: 5px;
+    	height: 35px;
+    	z-index: 66;
+    	position: relative;
+    	background-color: transparent;
+    }
     </style>
 </head>
 
@@ -220,10 +251,16 @@
                 <div id="control-bar">
                     <div id="all"><div id="played"><span class="thumb"></span></div></div>
                     <div id="info">
+                    	
                         <span id="ptime"></span>/
                         <span id="atime"></span>
-                        <i class="volume icon"> &#xe800; </i>
-                        <i class="loop icon">&#xe801; </i>
+                        <span id="volume-outer"><i class="volume icon"> &#xe800;</i>
+								<div id="volume-wrap"><div id="volume-mask"></div>
+                    		<div id="volume"></div>
+                    	</div>
+                        </span>
+                        
+                        <i class="loop icon">&#xe801;</i>
                         <i class="menu icon">&#xe802;</i>
                     </div>
                 </div>
