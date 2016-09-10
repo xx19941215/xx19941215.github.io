@@ -1,4 +1,4 @@
----
+﻿---
 layout:     post
 title:      "JavaScript中创建对象的几种方式和优缺点"
 subtitle:   "6.2创建对象"

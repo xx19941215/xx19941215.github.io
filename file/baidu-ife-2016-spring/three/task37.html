@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,.3);
+      display: none;
+    }
+    * {
+      -webkit-user-select: none;
+    }
+    .modal-dialog {
+      width: 500px;
+      height: 290px;
+      position: fixed;
+      left:50%;
+      top:50%;
+      margin-top:-150px;
+      margin-left:-250px;
+      background-color: #fff;
+    }
+    .modal-dialog .modal-content {
+      width: 500px;
+      height: 290px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+      position: absolute;
+    }
+    .modal-dialog.danger .modal-header {
+      height: 40px;
+      text-align: left;
+      width: 100%;
+      background: #E74C3C;
+      font-weight: bold;
+      text-indent: .5em;
+      font-size: 24px;
+      color: white;
+      line-height: 40px;
+    }
+    .modal-dialog.success .modal-header {
+      height: 40px;
+      text-align: left;
+      width: 100%;
+      background: #449D44;
+      font-weight: bold;
+      text-indent: .5em;
+      font-size: 24px;
+      color: white;
+      line-height: 40px;
+    }
+    .modal-dialog.info .modal-header {
+      height: 40px;
+      text-align: left;
+      width: 100%;
+      background: #5BC0DE;
+      font-weight: bold;
+      text-indent: .5em;
+      font-size: 24px;
+      color: white;
+      line-height: 40px;
+    }
+    .modal-header span {
+      position: absolute;
+      right: 10px;
+      opacity:0.4;
+      transition: all .5s linear;
+      cursor: pointer;
+    }
+    .modal-header span:hover {
+      opacity: 1;
+    }
+    .modal-body {
+      height: 200px;
+      padding: 1em;
+      box-sizing: border-box;
+    }
+    .modal-footer {
+      height: 40px;
+      bottom: 10px;
+      position: absolute;
+      right: 0;
+    }
+    .modal-footer button {
+      color: white;
+      font-size: 18px;
+      font-weight:bold;
+      float: right;
+      margin-right:.5em;
+      cursor: pointer;
+    }
+    .modal-footer button.confirm{
+      -webkit-appearance: none;
+      background: #2ECC71;
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      outline: none;
+      border: none;
+      box-shadow: 0 3px 1px rgba(0,0,0,.3);
+      border-radius: 3px;
+
+    }
+    .modal-footer button.cancel{
+      -webkit-appearance: none;
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      outline: none;
+      border: none;
+      box-shadow: 0 3px 1px rgba(0,0,0,.3);
+      border-radius: 3px;
+    }
+    .danger .modal-footer button.cancel {
+      background: #E74C3C;;
+    }
+    .info .modal-footer button.cancel {
+      background: #5BC0DE;
+    }
+    .success .modal-footer button.cancel {
+      background: #449D44;
+    }
+    .resizeL, .resizeR, .resizeT, .resizeB, .resizeLT, .resizeRT, .resizeLB, .resizeRB {
+      position: absolute;
+    }
+    .resizeL {
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+    }
+    .resizeR {
+      right: 0;
+      top: 0;
+      width: 5px;
+      height: 100%;
+    }
+    .resizeT {
+      width: 100%;
+      top: 0;
+      height: 5px;
+    }
+    .resizeB {
+      width: 100%;
+      height: 5px;
+      bottom: 0;
+    }
+    .resizeLB {
+      width: 5px;
+      height: 5px;
+      left: 0;
+      bottom: 0;
+    }
+    .resizeRB {
+      width: 5px;
+      height: 5px;
+      right: 0;
+      bottom: 0;
+    }
+    .resizeLT {
+      width: 5px;
+      height: 5px;
+      left: 0;
+      top: 0;
+    }
+    .resizeRT {
+       width: 5px;
+       height: 5px;
+       right: 0;
+       top: 0;
+     }
+    p {
+      margin: 0;
+    }
+    p.modal-title {
+      position: absolute;;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. A assumenda commodi delectus dolores eius mollitia possimus quidem tenetur? Fuga iste magni sequi voluptates. At corporis, fugiat non perspiciatis sit voluptatem?
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>
+  <div class="modal" id="myModal">
+    <div class="modal-dialog danger">
+      <!--<div class="modal-content">-->
+        <div class="modal-header">  <p class="modal-title">请注意!</p> <span class="close">X</span></div>
+        <div class="modal-body">请修改</div>
+        <div class="modal-footer">
+          <button class="cancel">取消</button>
+          <button class="confirm">确定</button>
+
+        </div>
+        <div class="resizeL"></div>
+        <div class="resizeR"></div>
+        <div class="resizeT"></div>
+        <div class="resizeB"></div>
+        <div class="resizeLT"></div>
+        <div class="resizeRT"></div>
+        <div class="resizeLB"></div>
+        <div class="resizeRB"></div>
+      <!--</div>-->
+    </div>
+  </div>
+  <button class="modal-btn" id="btn1">点我</button>
+  <button class="modal-btn" id="btn2">再点我</button>
+
+  <script src="jquery.min.js"></script>
+  <script src="js/task37.js"></script>
+  <script>
+
+    $("button").modal.init({
+      type: "danger",//窗体样式info error success warning
+      width: 600,//弹出层宽度，最小300
+      height: 300,//弹出层高度，最小200
+      confirm: function () {//确认按钮回调函数
+        alert("确认");
+      },
+      cancel: function () {//取消按钮回调函数
+        alert("取消");
+      },
+      title: "错误!",//弹出层标题
+      content: "请修改提交的内容",//弹出层内容区
+      allowDrag: true,
+      allowPageWheel: true,
+      allowResize: true,
+      src:$('#btn1')
+    })
+    $("button").modal.init({
+      type: "info",//窗体样式info error success warning
+      width: 600,//弹出层宽度，最小300
+      height: 300,//弹出层高度，最小200
+      confirm: function () {//确认按钮回调函数
+        alert("确认");
+      },
+      cancel: function () {//取消按钮回调函数
+        alert("取消");
+      },
+      title: "错误!",//弹出层标题
+      content: "看看会出现什么奇怪的内容",//弹出层内容区
+      allowDrag: true,
+      allowPageWheel: true,
+      allowResize: true,
+      src:$('#btn2')
+    })
+  </script>
+</body>
+</html>
