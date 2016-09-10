@@ -109,5 +109,3 @@ person1对象的constructor属性指向Person
         person1.sayName();
 ```
 ![](http://7fv8kc.com1.z0.glb.clouddn.com/prototype.png)
-
-
