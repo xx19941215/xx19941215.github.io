@@ -109,13 +109,13 @@ alert(person1.sayName == person2.sayName);
 
 ```javascript
 function Person() {}
-            Person.prototype.name = "Xiaoxiao";
-            Person.prototype.age = 22;
-            Person.prototype.job = "student";
-            Person.prototype.sayName = function() {
-                alert(this.name);
-        }
-    var person1 = new Person();
-    person1.sayName();
+      Person.prototype.name = "Xiaoxiao";
+      Person.prototype.age = 22;
+      Person.prototype.job = "student";
+      Person.prototype.sayName = function() {
+      alert(this.name);
+}
+var person1 = new Person();
+ person1.sayName();
 ```
 ![](http://7fv8kc.com1.z0.glb.clouddn.com/prototype.png)
