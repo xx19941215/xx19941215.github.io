@@ -53,17 +53,17 @@ tags:
 	person1.sayName();
 ```
 与工厂模式相比较
-	○ 没有显式创建对象
-	○ 没有直接将属性和方法赋给了this对象
-	○ 没有return语句
+	1. 没有显式创建对象
+	1. 没有直接将属性和方法赋给了this对象
+	1. 没有return语句
 按照惯例，构造函数始终都需要以一个大写字母开头，而非构造函数使用非大写字母开头。
 	
 构造函数创建对象经过一下几个步骤
 	
-	○ 创建一个新对象
-	○ 将构造函数的作用域赋给新对象（使用this就指向了这个新对象）
-	○ 执行构造函数中的代码（为这个新对象添加属性）
-	○ 返回新对象
+	1. 创建一个新对象
+	1. 将构造函数的作用域赋给新对象（使用this就指向了这个新对象）
+	1. 执行构造函数中的代码（为这个新对象添加属性）
+	1. 返回新对象
 	
 person1对象的constructor属性指向Person
 ```javascript
@@ -75,7 +75,7 @@ person1对象的constructor属性指向Person
 	alert(person1 instanceof Person);//true
 ```
 使用构造函数生成对象的时候每个方法都要在每一个实例上创建一遍。其实完全没有这个必要。
-		证明：
+证明：
 ```javascript
 	function Person(name,age,job){
 		  this.name = name;
