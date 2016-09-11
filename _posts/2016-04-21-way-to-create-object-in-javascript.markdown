@@ -71,14 +71,14 @@ person1.sayName();
 person1对象的constructor属性指向Person
 
 ```javascript
-	alert(person1.constructor==Person);//true
+alert(person1.constructor==Person);//true
 ```
 
 对象的`constructor`属性最初是用来标识对象的。检测对象类型最好使用instanceof操作符。
 
 ```javascript
-	lert(person1 instanceof Object);//true
-	alert(person1 instanceof Person);//true
+lert(person1 instanceof Object);//true
+alert(person1 instanceof Person);//true
 ```
 
 使用构造函数生成对象的时候每个方法都要在每一个实例上创建一遍。其实完全没有这个必要。
@@ -115,7 +115,7 @@ function Person() {}
             Person.prototype.sayName = function() {
                 alert(this.name);
         }
-        var person1 = new Person();
-        person1.sayName();
+    var person1 = new Person();
+    person1.sayName();
 ```
 ![](http://7fv8kc.com1.z0.glb.clouddn.com/prototype.png)
