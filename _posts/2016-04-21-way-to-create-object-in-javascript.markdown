@@ -20,7 +20,7 @@ tags:
 
 ```javascript
 	function createPerson(name,age,job) {
-	            var o=new Object();
+				var o=new Object();
 	            o.name=name;
 	            o.age=age;
 	            o.job=job;
