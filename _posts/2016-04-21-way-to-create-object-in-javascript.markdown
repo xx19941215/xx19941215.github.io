@@ -1,4 +1,4 @@
-﻿---
+---
 layout:     post
 title:      "JavaScript中创建对象的几种方式和优缺点"
 subtitle:   "6.2创建对象"
@@ -96,6 +96,8 @@ person1对象的constructor属性指向Person
 可以在构造函数内部定义sayName属性为全局的sayName函数。但是在全局的定义的函数只可以被某个函数调用，而且这样也破坏了函数封装。
 
 ##### 5.使用原型模式创建对象
+
+这种方式我目前用的最多
 
 ```javascript
  function Person() {}
