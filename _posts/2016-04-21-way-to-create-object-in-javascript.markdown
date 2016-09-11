@@ -21,15 +21,15 @@ tags:
 
 ```javascript
 	function createPerson(name,age,job) {
-				var o=new Object();
-	            o.name=name;
-	            o.age=age;
-	            o.job=job;
-	            o.sayName=function(){
-	                console.log(this.name);
-	            };
-	            return o;
-	        }
+		var o=new Object();
+	     	o.name=name;
+	     	o.age=age;
+	     	o.job=job;
+	     	o.sayName=function(){
+	         console.log(this.name);
+		};
+	     return o;
+	 }
 	var person1=createPerson("xiaoxiao",21,"Digital Media Technology");
 	person1.sayName();
 ```
@@ -42,14 +42,14 @@ tags:
 
 ```javascript
 	function Person(name,age,job){
-	        this.name=name;
-	        this.age=age;
-	        this.job=job;
-	        this.sayName=function(){
-	            console.log(this.name);
-	        }
+		this.name=name;
+		this.age=age;
+		this.job=job;
+		this.sayName=function(){
+     		console.log(this.name);
+		}
 	 
-	    }
+	}
 	var person1=new Person("xiaoxiao",21,"Digital Media Technology");
 	person1.sayName();
 ```
@@ -108,12 +108,12 @@ person1对象的constructor属性指向Person
 这种方式我目前用的最多
 
 ```javascript
- function Person() {}
-        Person.prototype.name = "Xiaoxiao";
-        Person.prototype.age = 22;
-        Person.prototype.job = "student";
-        Person.prototype.sayName = function() {
-            alert(this.name);
+	function Person() {}
+	        Person.prototype.name = "Xiaoxiao";
+	        Person.prototype.age = 22;
+	        Person.prototype.job = "student";
+	        Person.prototype.sayName = function() {
+	            alert(this.name);
         }
         var person1 = new Person();
         person1.sayName();
