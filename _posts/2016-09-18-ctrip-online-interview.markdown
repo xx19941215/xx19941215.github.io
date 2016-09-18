@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "CSRF、AMD和水平垂直居中元素的方法"
-subtitle:   "携程在线笔试"
+subtitle:   "携程"
 date:       2016-09-18 10:18:00
 author:     "Xiao"
 header-img: "img/fenghuang.jpg"
