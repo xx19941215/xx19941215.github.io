@@ -2,7 +2,7 @@
 layout:     post
 title:      "JavaScript中实现继承的几种方式"
 subtitle:   "6.3继承"
-date:       2016-04-21 16:18:00
+date:       2016-09-13 16:18:00
 author:     "Xiao"
 header-img: "img/fenghuang.jpg"
 tags:
