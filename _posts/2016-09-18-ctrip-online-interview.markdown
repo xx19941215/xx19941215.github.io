@@ -44,6 +44,7 @@ CSRF攻击是源于WEB的隐式身份验证机制，WEB的身份验证机制可�
 > AMD CMD 和CommonJS规范分别指什么？
 
 CommonJS规范通过定义丰富的能够解决一些通常的应用开发的API来补足了JS官方中关于标准库的不足。建立他的意图是希望开发者可以运用这些API去开发应用，而且所开发的应用能够在不同的JS环境中运行。服务端的Nodejs就是一个例子，服务端的程序比在浏览器端更复杂，需要操作系统和其他程序互动，因此服务器必须要模块化以应对上述问题。`NodeJS`参照`CommonJS`规范创建了模块系统，模块系统通过`exports`暴露接口返回对象，通过`require`获取接口返回的对象。例如
+
 ```js
 // math.js文件 的内容：
  exports.method=function(){
@@ -57,7 +58,7 @@ CommonJS规范通过定义丰富的能够解决一些通常的应用开发的API
  // 当然 main.js可以继续exports接口 以供其他文件调用
 ```
 
- AMD即Asynchronous Module Definition (异步模块定义)，实现AMD的库有RequireJs等。在服务器端采用的CommonJs规范因为在浏览器同步执行加载的问题会导致浏览器在加载JS的时候处于假死状态，AMD就是为了解决这个问题而诞生的。AMD采用异步的方式去获取引用的JS，待加载完毕之后再执行对应的程序，避免了浏览器的假死。
+AMD即Asynchronous Module Definition (异步模块定义)，实现AMD的库有RequireJs等。在服务器端采用的CommonJs规范因为在浏览器同步执行加载的问题会导致浏览器在加载JS的时候处于假死状态，AMD就是为了解决这个问题而诞生的。AMD采用异步的方式去获取引用的JS，待加载完毕之后再执行对应的程序，避免了浏览器的假死。
 
 ```js
  //语法
