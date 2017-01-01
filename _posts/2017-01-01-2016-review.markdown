@@ -1,0 +1,16 @@
+---
+layout:     post
+title:      "2016年年度小结"
+subtitle:   "向上生长"
+date:       2017-01-01 09:26:00
+author:     "Xiao"
+header-img: "img/fenghuang.jpg"
+tags:
+    - 年度总结
+---
+
+> 2017年来了，天生不会掉馅饼，努力奋斗才能梦想成真。
+
+##### 学业
+
+这一年，大四了。
